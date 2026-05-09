@@ -1653,7 +1653,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      transition: opacity 0.42s ease, filter 0.42s ease, transform 0.42s cubic-bezier(0.22,1,0.36,1);
+      transition: opacity 0.42s ease, filter 0.42s ease, transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
       opacity: 0.35;
       filter: blur(2px);
       transform: scale(0.92);
@@ -1717,7 +1717,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(59,42,26,0.12);
+      box-shadow: 0 2px 10px rgba(59, 42, 26, 0.12);
       transition: background 0.22s, color 0.22s, transform 0.18s;
       flex-shrink: 0;
     }
@@ -1728,7 +1728,9 @@
       transform: scale(1.08);
     }
 
-    .dc-arrow:active { transform: scale(0.93); }
+    .dc-arrow:active {
+      transform: scale(0.93);
+    }
 
     /* Ghost keeps nav width stable when one arrow is hidden */
     .dc-arrow-ghost {
@@ -2625,9 +2627,9 @@
 
       /* ── Flower 1 (rose stem): between venue photo and Save the Date card ── */
       .flower-grass {
-        width: 90px;
-        top: 155px;
-        left: -18px;
+        width: 130px;
+        top: 225px;
+        left: -83px;
         right: auto;
         transform: rotate(-12deg);
         transform-origin: bottom center;
@@ -2635,9 +2637,9 @@
 
       /* ── Flower 2 (bouquet): between couple/Wedding Of and FAQs/nav strip ── */
       .flower-bouquet {
-        width: 130px;
-        top: 530px;
-        right: -28px;
+        width: 285px;
+        top: 680px;
+        right: -59px;
         left: auto;
         transform: rotate(8deg);
         transform-origin: bottom center;
@@ -2645,13 +2647,30 @@
 
       /* ── Flower 3 (grass reeds): beside the Prenuptial nav button ── */
       .flower-rose {
-        width: 85px;
-        top: 620px;
-        left: -20px;
+        width: 110px;
+        top: 820px;
+        left: -38px;
         right: auto;
         transform: rotate(-8deg);
         transform-origin: bottom center;
       }
+
+      @keyframes flowerGrassIn {
+        0% {
+          opacity: 0;
+          transform: rotate(-12deg) translateY(40px) scale(0.85);
+        }
+
+        60% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 1;
+          transform: rotate(25deg) translateY(0) scale(1);
+        }
+      }
+
 
       /* ── Section inner pages: more horizontal padding ── */
       #details .section-wrap,
@@ -2742,16 +2761,23 @@
 
     /* Added by JS when element enters viewport; removed on leave */
     .page-el.page-el-in {
-      animation: pageElRise var(--page-el-dur, 0.80s)
-                 cubic-bezier(0.22, 1, 0.36, 1)
-                 var(--page-el-delay, 0s)
-                 forwards;
+      animation: pageElRise var(--page-el-dur, 0.80s) cubic-bezier(0.22, 1, 0.36, 1) var(--page-el-delay, 0s) forwards;
     }
 
     @keyframes pageElRise {
-      0%   { opacity: 0; transform: translateY(36px); }
-      58%  { opacity: 1; }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {
+        opacity: 0;
+        transform: translateY(36px);
+      }
+
+      58% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -2989,7 +3015,8 @@
     </div><!-- /.home-collage -->
 
     <footer style="max-width:480px;margin:0 auto;">
-      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span class="footer-date">August 14, 2026</span>
+      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span
+        class="footer-date">August 14, 2026</span>
     </footer>
   </div>
 
@@ -3035,8 +3062,9 @@
         <!-- Map card — themed to match the invitation; tapping opens Google Maps.
            SWAP: Update href with the correct Google Maps link for the ceremony venue.
            Google Maps iframe embeds cannot be recolored, so we use this card instead. -->
-        <a class="map-card page-el" style="--page-el-delay:0.36s" href="https://maps.google.com/?q=San+Vicente+Ferrer+Quasi+Parish+Monkayo+Davao+de+Oro"
-          target="_blank" rel="noopener" aria-label="Open ceremony venue in Google Maps">
+        <a class="map-card page-el" style="--page-el-delay:0.36s"
+          href="https://maps.google.com/?q=San+Vicente+Ferrer+Quasi+Parish+Monkayo+Davao+de+Oro" target="_blank"
+          rel="noopener" aria-label="Open ceremony venue in Google Maps">
           <div class="map-card-pin">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -3083,8 +3111,9 @@
 
         <!-- Map card — themed to match the invitation; tapping opens Google Maps.
            SWAP: Update href with the correct Google Maps link for the reception venue. -->
-        <a class="map-card page-el" style="--page-el-delay:0.26s" href="https://maps.google.com/?q=Basanes+Garden+Resto+Events+Monkayo+Davao+de+Oro"
-          target="_blank" rel="noopener" aria-label="Open reception venue in Google Maps">
+        <a class="map-card page-el" style="--page-el-delay:0.26s"
+          href="https://maps.google.com/?q=Basanes+Garden+Resto+Events+Monkayo+Davao+de+Oro" target="_blank"
+          rel="noopener" aria-label="Open reception venue in Google Maps">
           <div class="map-card-pin">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -3188,9 +3217,11 @@
           </div>
           <!-- nav row -->
           <div class="dc-nav" id="nav-women">
-            <span id="btn-women-prev-wrap"><button class="dc-arrow" id="btn-women-prev" onclick="peekGo('scroll-women',-1)" aria-label="Previous">&#8592;</button></span>
+            <span id="btn-women-prev-wrap"><button class="dc-arrow" id="btn-women-prev"
+                onclick="peekGo('scroll-women',-1)" aria-label="Previous">&#8592;</button></span>
             <div class="dc-dots" id="dots-women"></div>
-            <span id="btn-women-next-wrap"><button class="dc-arrow" id="btn-women-next" onclick="peekGo('scroll-women',1)" aria-label="Next">&#8594;</button></span>
+            <span id="btn-women-next-wrap"><button class="dc-arrow" id="btn-women-next"
+                onclick="peekGo('scroll-women',1)" aria-label="Next">&#8594;</button></span>
           </div>
         </div><!-- /.dc-carousel-wrap -->
       </div>
@@ -3243,9 +3274,11 @@
           </div>
           <!-- nav row -->
           <div class="dc-nav" id="nav-men">
-            <span id="btn-men-prev-wrap"><button class="dc-arrow" id="btn-men-prev" onclick="peekGo('scroll-men',-1)" aria-label="Previous">&#8592;</button></span>
+            <span id="btn-men-prev-wrap"><button class="dc-arrow" id="btn-men-prev" onclick="peekGo('scroll-men',-1)"
+                aria-label="Previous">&#8592;</button></span>
             <div class="dc-dots" id="dots-men"></div>
-            <span id="btn-men-next-wrap"><button class="dc-arrow" id="btn-men-next" onclick="peekGo('scroll-men',1)" aria-label="Next">&#8594;</button></span>
+            <span id="btn-men-next-wrap"><button class="dc-arrow" id="btn-men-next" onclick="peekGo('scroll-men',1)"
+                aria-label="Next">&#8594;</button></span>
           </div>
         </div><!-- /.dc-carousel-wrap -->
       </div>
@@ -3568,7 +3601,7 @@
         el.classList.toggle('active', id === name);
         // Reset page-el animations on the page we're leaving
         if (wasActive && id !== name) {
-          el.querySelectorAll('.page-el').forEach(function(pe) {
+          el.querySelectorAll('.page-el').forEach(function (pe) {
             pe.classList.remove('page-el-in');
           });
         }
@@ -3685,8 +3718,8 @@
       // Already initialised — just re-render with correct wrap width
       if (peekState[id]) { peekRender(id); return; }
 
-      const wrap   = el.closest('.dc-carousel-wrap');
-      const items  = Array.from(el.querySelectorAll('.dc-item'));
+      const wrap = el.closest('.dc-carousel-wrap');
+      const items = Array.from(el.querySelectorAll('.dc-item'));
       const dotsEl = wrap ? wrap.querySelector('.dc-dots') : null;
       const prevWrap = document.getElementById(id.replace('scroll-', 'btn-') + '-prev-wrap');
       const nextWrap = document.getElementById(id.replace('scroll-', 'btn-') + '-next-wrap');
@@ -3751,7 +3784,7 @@
 
       // ── Arrow visibility: ghost placeholder keeps layout stable ──
       const isFirst = index === 0;
-      const isLast  = index === items.length - 1;
+      const isLast = index === items.length - 1;
       if (prevWrap) {
         prevWrap.innerHTML = isFirst
           ? '<span class="dc-arrow-ghost"></span>'
@@ -3867,9 +3900,9 @@
        (playing the pageElRise keyframe) and loses it when it leaves,
        so the animation replays every time the element scrolls in.
     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    (function() {
-      var pageElObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
+    (function () {
+      var pageElObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('page-el-in');
           } else {
@@ -3882,7 +3915,7 @@
         rootMargin: '0px 0px -24px 0px'
       });
 
-      document.querySelectorAll('.page-el').forEach(function(el) {
+      document.querySelectorAll('.page-el').forEach(function (el) {
         pageElObserver.observe(el);
       });
     })();
@@ -3920,9 +3953,15 @@
         <div class="vinyl" id="vinyl"></div>
         <span class="music-icon" id="musicIcon">
           <!-- Play icon (default) -->
-          <svg id="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="#fff5e8" style="display:block;opacity:0.85;"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="#fff5e8"
+            style="display:block;opacity:0.85;">
+            <path d="M8 5v14l11-7z" />
+          </svg>
           <!-- Pause icon (hidden by default) -->
-          <svg id="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="#fff5e8" style="display:none;opacity:0.85;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          <svg id="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="#fff5e8"
+            style="display:none;opacity:0.85;">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+          </svg>
         </span>
       </button>
     </div>
@@ -3939,17 +3978,17 @@
     const player = document.getElementById('musicPlayer');
     const musicLabel = document.getElementById('musicLabel');
     const musicHint = document.getElementById('musicHint');
-    const iconPlay  = document.getElementById('icon-play');
+    const iconPlay = document.getElementById('icon-play');
     const iconPause = document.getElementById('icon-pause');
     let isPlaying = false;
 
     function setPlayIcon() {
-      iconPlay.style.display  = 'block';
+      iconPlay.style.display = 'block';
       iconPause.style.display = 'none';
     }
 
     function setPauseIcon() {
-      iconPlay.style.display  = 'none';
+      iconPlay.style.display = 'none';
       iconPause.style.display = 'block';
     }
 

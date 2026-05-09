@@ -1,0 +1,4184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Jezle & Vengie — August 14, 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+SC:wght@300;400;500&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f5ede0;
+      --parchment: #ede0cc;
+      --brown-deep: #3b2a1a;
+      --brown-mid: #7a5230;
+      --brown-warm: #a0673a;
+      --caramel: #c9915a;
+      --tan: #d4b896;
+      --linen: #f9f3eb;
+      --muted: #9a7b62;
+      --text: #2c1d0e;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    .script {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .section-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .sec-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: 0.4rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+    }
+
+    .sec-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.6rem, 8vw, 4rem);
+      color: var(--brown-deep);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .sec-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--caramel);
+      margin: 1.2rem 0 2rem;
+    }
+
+    .back-btn-bar {
+      position: sticky;
+      top: 0;
+      z-index: 800;
+      background: rgba(245, 237, 224, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(212, 184, 150, 0.35);
+      padding: 0.75rem 1.5rem;
+      margin: 0 -1.5rem 2rem;
+      /* Use left/right instead of width to avoid horizontal overflow */
+      width: auto;
+      left: 0;
+      right: 0;
+    }
+
+    #faq .back-btn-bar {
+      background: rgba(40, 28, 15, 0.92);
+      border-bottom-color: rgba(201, 145, 90, 0.2);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.3s;
+    }
+
+    .back-btn:hover {
+      color: var(--brown-warm);
+    }
+
+    .back-btn::before {
+      content: '←';
+      font-size: 0.9rem;
+    }
+
+    .back-btn-light {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .back-btn-light:hover {
+      color: #fff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      background: var(--brown-mid);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--brown-deep);
+      transform: translateY(-1px);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--tan);
+      margin: 3rem 0;
+    }
+
+    .img-ph {
+      background: var(--parchment);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    #landing {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 3rem;
+      background: linear-gradient(160deg, #f7eeea 0%, #f2e4d8 50%, #ede0d0 100%);
+      position: relative;
+      overflow: visible;
+      gap: 0;
+    }
+
+    /* Space above envelope so flap triangle shows clearly — handled via z-index on opening */
+
+    #landing::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 145, 90, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .landing-names {
+      font-family: 'Great Vibes', cursive !important;
+      font-size: clamp(3rem, 10vw, 5rem) !important;
+      color: rgba(65, 43, 26, 0.863);
+      line-height: 1.05;
+      margin-top: 0;
+      margin-bottom: 0.1rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s;
+      font-weight: 400;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .landing-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      letter-spacing: 0.12em;
+      color: var(--caramel);
+      margin-bottom: 0.1rem;
+      opacity: 0;
+      animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.1s;
+      font-weight: 300;
+    }
+
+    .landing-sub {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--caramel);
+      margin-bottom: 0.1rem;
+      opacity: 0;
+      animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.35s;
+      font-weight: 400;
+    }
+
+    .landing-amp {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.38em;
+      color: var(--caramel);
+      vertical-align: middle;
+      margin: 0 0.15em;
+      font-weight: 300;
+    }
+
+    .landing-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.38em;
+      color: var(--muted);
+      margin: 0.4rem 0 2.4rem;
+      opacity: 0;
+      animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.5s;
+      font-weight: 300;
+    }
+
+    /* ── FIXED ENVELOPE ANIMATION ── */
+
+    .env-scene {
+      width: min(360px, 78vw);
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.8s;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s;
+      overflow: visible;
+    }
+
+    /* When opening, raise the whole scene so the flap floats over the names/date */
+    .env-scene.opening {
+      z-index: 100;
+    }
+
+    .env-scene:hover {
+      transform: scale(1.02);
+    }
+
+    .env-3d {
+      perspective: 900px;
+      perspective-origin: 50% 40%;
+    }
+
+    /* env-body: stacking context that sizes itself to the envelope SVG */
+    .env-body {
+      position: relative;
+      /* Height driven by the body-layer SVG (aspect ~680:460) */
+    }
+
+    .env-svg-wrap {
+      position: relative;
+      width: 100%;
+      filter:
+        drop-shadow(0 18px 38px rgba(40, 20, 8, 0.38)) drop-shadow(0 6px 14px rgba(40, 20, 8, 0.22));
+      overflow: visible;
+    }
+
+    /* FLAP layer — on top of envelope body when closed */
+    .env-flap-layer {
+      position: relative;
+      /* normal flow — sets the height of env-body */
+      z-index: 4;
+      /* above body (3) and letter (2) when closed */
+      filter: none;
+      perspective: 900px;
+      perspective-origin: 50% 0%;
+    }
+
+    /* Once the flap has flipped past 90°, drop it behind everything */
+    .env-flap-layer.flap-behind {
+      z-index: 0;
+    }
+
+    /* ENVELOPE BODY layer — always on top; letter rises from behind it */
+    .env-body-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 3;
+      filter:
+        drop-shadow(0 18px 38px rgba(40, 20, 8, 0.38)) drop-shadow(0 6px 14px rgba(40, 20, 8, 0.22));
+    }
+
+    /* SEAL layer — always above flap (4) so stamp shows on top when closed */
+    .env-seal-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 5;
+      filter: none;
+      pointer-events: none;
+    }
+
+
+
+    .env-main-svg {
+      width: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    /* FLAP */
+
+    .env-flap-group {
+      transform-box: fill-box;
+      transform-origin: 50% 0%;
+      transform-style: preserve-3d;
+
+      transition:
+        transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .env-scene.opening .env-flap-group {
+      transform: rotateX(180deg);
+    }
+
+    .env-seal-group {
+      transform-origin: center;
+    }
+
+    /* BLUR OVERLAY */
+
+    .landing-blur-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      background: rgba(245, 237, 224, 0);
+      pointer-events: none;
+
+      transition:
+        backdrop-filter 1s ease 1.2s,
+        -webkit-backdrop-filter 1s ease 1.2s,
+        background 1s ease 1.2s;
+    }
+
+    #landing.opening .landing-blur-overlay {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(245, 237, 224, 0.55);
+    }
+
+    /* LETTER */
+
+    .env-letter {
+      position: absolute;
+
+      left: 50%;
+      /* Sits inside the envelope — top of letter near the envelope opening */
+      top: 20%;
+
+      width: 76%;
+
+      /* Starts fully inside envelope (covered by env-body-layer above it) */
+      transform: translateX(-50%) translateY(0%);
+
+      background:
+        linear-gradient(160deg,
+          #fdf8f2 0%,
+          #f5ede0 100%);
+
+      border:
+        1px solid rgba(201, 145, 90, 0.28);
+
+      padding: 1.7rem 1.8rem 1.5rem;
+
+      text-align: center;
+
+      box-shadow:
+        0 -4px 32px rgba(59, 42, 26, 0.13),
+        0 2px 8px rgba(59, 42, 26, 0.06);
+
+      /* Between flap (z:1) and envelope body (z:3) — rises above flap when open */
+      z-index: 2;
+
+      opacity: 1;
+
+      border-radius: 2px;
+
+      pointer-events: none;
+    }
+
+    /* LETTER RISE: starts behind the envelope body, rises upward out of it */
+
+    .env-scene.opening .env-letter {
+      animation:
+        letterRise 1.3s cubic-bezier(0.22, 1, 0.36, 1) 1.3s forwards;
+    }
+
+    @keyframes letterRise {
+
+      0% {
+        /* Inside envelope, covered by the body layer */
+        transform: translateX(-50%) translateY(0%);
+        filter: drop-shadow(0 0px 0px rgba(59, 42, 26, 0));
+      }
+
+      100% {
+        /* Letter risen fully — entire letter including quote clears the envelope top */
+        transform: translateX(-50%) translateY(-105%);
+        filter: drop-shadow(0 20px 100px rgba(59, 42, 26, 0.22));
+      }
+    }
+
+    /* LETTER CONTENT */
+
+    .env-letter-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.4rem;
+      color: var(--brown-deep);
+      display: block;
+      line-height: 1.2;
+      font-weight: 400;
+    }
+
+    .env-letter-amp {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.55em;
+      color: var(--brown-mid);
+      vertical-align: middle;
+      margin: 0 0.1em;
+      font-weight: 300;
+    }
+
+    .env-letter-date {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      display: block;
+      margin-top: 0.3rem;
+      font-weight: 300;
+    }
+
+    .env-letter-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--caramel);
+      margin: 0.8rem auto;
+
+      opacity: 0;
+      transition: opacity 0.6s ease 3s;
+    }
+
+    .env-scene.opening .env-letter-divider {
+      opacity: 1;
+    }
+
+    .env-letter-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--brown-deep);
+
+      display: block;
+      line-height: 1.45;
+
+      opacity: 0;
+      transition: opacity 0.7s ease 3.2s;
+      font-weight: 300;
+    }
+
+    .env-scene.opening .env-letter-quote {
+      opacity: 1;
+    }
+
+    .env-hint {
+      position: relative;
+      z-index: 1;
+
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+
+      color: var(--muted);
+      margin-top: 0.8rem;
+      opacity: 0.75;
+    }
+
+    .env-hint.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+
+    #home {
+      display: none;
+    }
+
+    #home.active {
+      display: block;
+    }
+
+    /* ── NEW EDITORIAL HOME LAYOUT ── */
+
+    .home-collage {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 2.5rem 1.2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .flower-overlay {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FLOWER 1 (flower1.png) — HOME PAGE, LEFT SIDE
+       Spans Save the Date → venue photo → into You Are Invited hero
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .flower-grass {
+      width: 200px;
+      /* ← FLOWER 1 SIZE  (make bigger/smaller) */
+      top: 130px;
+      /* ← FLOWER 1 UP/DOWN (lower number = higher up) */
+      left: -110px;
+      /* ← FLOWER 1 LEFT/RIGHT (negative = further left) */
+      transform: rotate(-12deg);
+      /* ← FLOWER 1 ROTATION (negative = leans left) */
+      transform-origin: bottom center;
+      z-index: 12;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FLOWER 2 (flower2.png) — HOME PAGE, RIGHT SIDE
+       Beside "The Wedding of / Jezle & Vengie" couple section
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .flower-bouquet {
+      width: 490px;
+      /* ← FLOWER 2 SIZE */
+      top: 480px;
+      /* ← FLOWER 2 UP/DOWN */
+      right: -270px;
+      /* ← FLOWER 2 LEFT/RIGHT (negative = further right) */
+      transform: rotate(10deg);
+      /* ← FLOWER 2 ROTATION (positive = leans right) */
+      transform-origin: bottom center;
+      z-index: 12;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FLOWER 3 (flower3.png) — HOME PAGE, LEFT SIDE (lower)
+       Beside the couple / nav section
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .flower-rose {
+      width: 180px;
+      /* ← FLOWER 3 SIZE */
+      top: 650px;
+      /* ← FLOWER 3 UP/DOWN — beside FAQ nav button */
+      left: -100px;
+      /* ← FLOWER 3 LEFT/RIGHT */
+      transform: rotate(-8deg);
+      /* ← FLOWER 3 ROTATION */
+      transform-origin: bottom center;
+      z-index: 12;
+    }
+
+    /* ── Animations: grow up from below ── */
+    @keyframes flowerGrassIn {
+      0% {
+        opacity: 0;
+        transform: rotate(-12deg) translateY(40px) scale(0.85);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: rotate(-3deg) translateY(0) scale(1);
+      }
+    }
+
+    @keyframes flowerBouquetIn {
+      0% {
+        opacity: 0;
+        transform: rotate(10deg) translateY(40px) scale(0.85);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: rotate(8deg) translateY(0) scale(1);
+      }
+    }
+
+    @keyframes flowerRoseIn {
+      0% {
+        opacity: 0;
+        transform: rotate(-8deg) translateY(40px) scale(0.85);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: rotate(10deg) translateY(0) scale(1);
+      }
+    }
+
+    .flower-grass.flower-in {
+      animation: flowerGrassIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+    }
+
+    .flower-bouquet.flower-in {
+      animation: flowerBouquetIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+    }
+
+    .flower-rose.flower-in {
+      animation: flowerRoseIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+    }
+
+    /* ── SECTION 1: JV monogram + You're Invited hero ── */
+    .home-hero {
+      background: var(--brown-deep);
+      color: #fff;
+      text-align: center;
+      padding: 1.8rem 2rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 6px 28px rgba(59, 42, 26, 0.22);
+    }
+
+    .home-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 65% 30%, rgba(201, 145, 90, 0.13) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    /* JV monogram circle — logo-sized, centered */
+    .home-hero-logo {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: rgba(201, 145, 90, 0.12);
+      border: 1.5px solid rgba(201, 145, 90, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.65rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-hero-monogram {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.9rem;
+      color: var(--caramel);
+      line-height: 1;
+      display: block;
+      text-shadow: 0 1px 6px rgba(201, 145, 90, 0.3);
+    }
+
+    .home-hero-invited {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      letter-spacing: 0.26em;
+      color: rgba(255, 255, 255, 0.62);
+      text-transform: uppercase;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* thin caramel left accent */
+    .home-hero::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18%;
+      bottom: 18%;
+      width: 3px;
+      background: var(--caramel);
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* ── SECTION 2: Venue photo — full bleed wide card ── */
+    .home-venue-img {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      margin-top: -2px;
+    }
+
+    .home-venue-img img,
+    .home-venue-img .img-ph {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .home-venue-img-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(30, 16, 6, 0.7));
+      padding: 1.4rem 1.2rem 0.75rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* ── SECTION 3: Save the Date + Venue Details ── */
+    .home-std-row {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: -40px;
+      padding: 0 0.8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .home-std-card {
+      flex: 1 1 0;
+      background: var(--linen);
+      border: 1px solid var(--tan);
+      border-left: 3px solid var(--caramel);
+      border-radius: 8px;
+      padding: 1.2rem 1.1rem 1.2rem 1.3rem;
+      box-shadow: 0 8px 28px rgba(59, 42, 26, 0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .home-std-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.98rem;
+      color: var(--caramel);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* date row: day-of-week / big number / month+year stacked */
+    .home-std-date-block {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+
+    .home-std-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.6rem;
+      line-height: 0.88;
+      color: var(--brown-mid);
+      font-weight: 300;
+      display: block;
+    }
+
+    .home-std-date-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      padding-bottom: 0.3rem;
+    }
+
+    .home-std-dow {
+      font-size: 0.52rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .home-std-mo {
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .home-std-yr {
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .home-std-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--tan);
+      margin: 0.65rem 0 0.55rem;
+    }
+
+    .home-std-venue {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--brown-mid);
+      line-height: 1.45;
+      display: block;
+    }
+
+    /* Venue details tile — square dark */
+    .home-venue-btn {
+      flex: 0 0 90px;
+      background: var(--brown-mid);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      padding: 1rem 0.5rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(59, 42, 26, 0.22);
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      align-self: flex-end;
+    }
+
+    .home-venue-btn:hover {
+      background: var(--brown-deep);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(59, 42, 26, 0.28);
+    }
+
+    /* SVG icon inside venue btn */
+    .home-venue-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--caramel);
+      flex-shrink: 0;
+    }
+
+    .home-venue-btn-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    /* ── SECTION 4: Couple photo + info ── */
+    .home-couple-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      margin-top: 1rem;
+      padding: 0 0.5rem;
+    }
+
+    .home-polaroid {
+      flex: 0 0 47%;
+      background: #fff;
+      padding: 7px 7px 28px;
+      box-shadow: 0 6px 24px rgba(59, 42, 26, 0.18);
+      border-radius: 3px;
+      transform: rotate(-2deg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-polaroid img,
+    .home-polaroid .img-ph {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .home-polaroid-cap {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .home-couple-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-top: 0.4rem;
+    }
+
+    /* "The Wedding of" now above the names */
+    .home-couple-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.72rem;
+      color: var(--caramel);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.65rem;
+      display: block;
+    }
+
+    .home-couple-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.65rem, 5.5vw, 2.2rem);
+      color: var(--brown-deep);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .home-couple-amp {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.5em;
+      color: var(--caramel);
+    }
+
+    .home-mini-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 0.38rem;
+    }
+
+    .home-mini-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--linen);
+      border: 1px solid var(--tan);
+      border-right: 3px solid var(--caramel);
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
+      text-decoration: none;
+      color: var(--brown-deep);
+      font-size: 0.56rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 3px 10px rgba(59, 42, 26, 0.07);
+    }
+
+    .home-mini-btn:hover {
+      background: var(--parchment);
+      transform: translateX(-2px);
+      box-shadow: 0 5px 16px rgba(59, 42, 26, 0.12);
+    }
+
+    .home-mini-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--caramel);
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION 5: Bottom nav strip ── */
+    .home-nav-strip {
+      display: flex;
+      gap: 0.55rem;
+      margin-top: 1rem;
+      padding: 0 0.2rem;
+    }
+
+    .home-nav-tall {
+      flex: 0 0 42%;
+      background: var(--parchment);
+      border: 1px solid var(--tan);
+      border-top: 3px solid var(--brown-mid);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.8rem 0.8rem;
+      text-decoration: none;
+      color: var(--text);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(59, 42, 26, 0.10);
+      transition: transform 0.25s, box-shadow 0.3s;
+    }
+
+    .home-nav-tall:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(59, 42, 26, 0.16);
+    }
+
+    .home-nav-tall::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--brown-mid);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 0;
+    }
+
+    .home-nav-tall:hover::before {
+      transform: scaleY(1);
+    }
+
+    .home-nav-tall:hover .nav-eye,
+    .home-nav-tall:hover .nav-title {
+      color: #fff;
+    }
+
+    .home-nav-tall:hover svg {
+      fill: rgba(255, 255, 255, 0.75);
+    }
+
+    .home-nav-tall svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--brown-mid);
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+      transition: fill 0.3s;
+    }
+
+    .home-nav-stack {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .home-nav-sm {
+      flex: 1;
+      background: var(--brown-deep);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.2rem 0.6rem;
+      text-decoration: none;
+      color: #fff;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 5px 18px rgba(59, 42, 26, 0.18);
+      transition: transform 0.25s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .home-nav-sm:hover {
+      background: var(--brown-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(59, 42, 26, 0.24);
+    }
+
+    .home-nav-sm svg {
+      width: 18px;
+      height: 18px;
+      fill: rgba(201, 145, 90, 0.8);
+      margin-bottom: 0.35rem;
+    }
+
+    .home-nav-sm-alt {
+      background: var(--caramel);
+      color: var(--brown-deep);
+    }
+
+    .home-nav-sm-alt:hover {
+      background: var(--brown-warm);
+      color: #fff;
+    }
+
+    .home-nav-sm-alt svg {
+      fill: rgba(59, 42, 26, 0.6);
+    }
+
+    .home-nav-sm-alt:hover svg {
+      fill: rgba(255, 255, 255, 0.8);
+    }
+
+    .nav-eye {
+      font-size: 0.48rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+
+    .home-nav-sm .nav-eye {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .home-nav-sm-alt .nav-eye {
+      color: rgba(59, 42, 26, 0.55);
+    }
+
+    .home-nav-sm-alt:hover .nav-eye {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .nav-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--brown-deep);
+      position: relative;
+      z-index: 1;
+      transition: color 0.3s;
+      line-height: 1.2;
+    }
+
+    .home-nav-sm .nav-title {
+      color: #fff;
+      font-size: 1.05rem;
+    }
+
+    .home-nav-sm-alt .nav-title {
+      color: var(--brown-deep);
+      font-size: 1.05rem;
+    }
+
+    .home-nav-sm-alt:hover .nav-title {
+      color: #fff;
+    }
+
+    .home-nav-verse {
+      cursor: default;
+      background: var(--parchment);
+      border: 1px solid var(--tan);
+      border-left: 3px solid var(--caramel);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0.9rem 0.85rem;
+      gap: 0.3rem;
+      text-align: left;
+      box-shadow: 0 5px 18px rgba(59, 42, 26, 0.10);
+    }
+
+    .home-nav-verse:hover {
+      background: var(--parchment);
+      transform: none;
+      box-shadow: 0 5px 18px rgba(59, 42, 26, 0.18);
+    }
+
+    .nav-verse-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.78rem;
+      color: var(--brown-deep);
+      line-height: 1.5;
+    }
+
+    .nav-verse-ref {
+      font-size: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-top: 0.1rem;
+    }
+
+    /* ── HOME ENTRANCE ANIMATIONS — "coming together" ── */
+    /* All home sections start hidden; JS adds .home-in to trigger the converge */
+
+    .home-hero,
+    .home-venue-img,
+    .home-std-row,
+    .home-couple-row,
+    .home-nav-strip {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    /* Each piece starts at its "away" position */
+    .home-hero {
+      transform: translateY(-40px) scale(0.97);
+    }
+
+    .home-venue-img {
+      transform: scaleY(0.6);
+      transform-origin: top;
+    }
+
+    .home-std-row {
+      transform: translateX(60px);
+    }
+
+    .home-couple-row {
+      transform: translateX(-60px);
+    }
+
+    .home-nav-strip {
+      transform: translateY(50px);
+    }
+
+    /* When .home-in is added, everything converges */
+    .home-hero.home-in {
+      animation: convergeFall 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .home-venue-img.home-in {
+      animation: convergeExpand 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.15s;
+    }
+
+    .home-std-row.home-in {
+      animation: convergeLeft 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
+    }
+
+    .home-couple-row.home-in {
+      animation: convergeRight 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.44s;
+    }
+
+    .home-nav-strip.home-in {
+      animation: convergeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.58s;
+    }
+
+    @keyframes convergeFall {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.97);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes convergeExpand {
+      0% {
+        opacity: 0;
+        transform: scaleY(0.6);
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes convergeLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(60px);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes convergeRight {
+      0% {
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes convergeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* legacy - keep for other pages */
+    .std-wrap {
+      display: none;
+    }
+
+    .nav-grid {
+      display: none;
+    }
+
+    .venue-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .venue-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: 0.8rem;
+    }
+
+    .venue-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--brown-deep);
+      margin-bottom: 1rem;
+    }
+
+    .venue-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .venue-photos .img-ph {
+      height: 110px;
+    }
+
+    .venue-photos .img-ph.wide {
+      grid-column: span 2;
+      height: 140px;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      align-items: flex-start;
+    }
+
+    .info-key {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      min-width: 68px;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .info-val a {
+      color: var(--brown-mid);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .map-card {
+      margin-top: 1.5rem;
+      border: 1px solid var(--tan);
+      background: var(--linen);
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--parchment);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .map-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .map-card:hover {
+      border-color: var(--caramel);
+      box-shadow: 0 4px 20px rgba(59, 42, 26, 0.08);
+    }
+
+    .map-card-pin {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--brown-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .map-card-pin svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--caramel);
+    }
+
+    .map-card-text {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .map-card-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .map-card-venue {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.88rem;
+      color: var(--brown-deep);
+      display: block;
+      line-height: 1.35;
+    }
+
+    .map-card-address {
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 0.15rem;
+    }
+
+    .map-card-arrow {
+      font-size: 0.9rem;
+      color: var(--caramel);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s;
+    }
+
+    .map-card:hover .map-card-arrow {
+      transform: translateX(4px);
+    }
+
+    #dresscode {
+      display: none;
+    }
+
+    #dresscode.active {
+      display: block;
+    }
+
+    .dc-intro {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+
+    .dc-theme-badge {
+      display: inline-block;
+      background: var(--brown-deep);
+      color: var(--caramel);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .palette-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      align-items: center;
+    }
+
+    .swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(59, 42, 26, 0.18);
+      flex-shrink: 0;
+    }
+
+    .palette-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-left: 0.2rem;
+    }
+
+    .dc-gender-block {
+      margin-bottom: 3rem;
+    }
+
+    .dc-gender-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brown-deep);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--tan);
+    }
+
+    .dc-scroll {
+      display: flex;
+      gap: 0.8rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      cursor: grab;
+      scroll-behavior: smooth;
+    }
+
+    .dc-scroll:active {
+      cursor: grabbing;
+    }
+
+    .dc-item {
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .dc-scroll::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .dc-scroll::-webkit-scrollbar-track {
+      background: var(--parchment);
+    }
+
+    .dc-scroll::-webkit-scrollbar-thumb {
+      background: var(--tan);
+      border-radius: 2px;
+    }
+
+    .dc-item {
+      flex: 0 0 160px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .dc-photo {
+      width: 160px;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: var(--parchment);
+    }
+
+    .dc-photo-ph {
+      width: 160px;
+      height: 220px;
+      flex-shrink: 0;
+    }
+
+    .dc-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .dc-carousel-wrap {
+      position: relative;
+    }
+
+    .dc-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-60%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--linen);
+      border: 1px solid var(--tan);
+      color: var(--brown-mid);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 3px 14px rgba(59, 42, 26, 0.16);
+      transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, opacity 0.35s ease, transform 0.22s ease;
+      user-select: none;
+      opacity: 1;
+    }
+
+    .dc-arrow:hover {
+      background: var(--brown-mid);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(59, 42, 26, 0.26);
+      transform: translateY(-60%) scale(1.08);
+    }
+
+    .dc-arrow:active {
+      transform: translateY(-60%) scale(0.95);
+    }
+
+    .dc-arrow-left {
+      left: -16px;
+    }
+
+    .dc-arrow-right {
+      right: -16px;
+    }
+
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.6rem;
+    }
+
+    .scroll-hint::after {
+      content: '→';
+      animation: nudge 1.5s ease infinite;
+    }
+
+    @keyframes nudge {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(5px);
+      }
+    }
+
+    .tl-date-badge {
+      display: inline-block;
+      background: var(--brown-deep);
+      color: var(--caramel);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tl-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 72px 28px 1fr;
+      gap: 0 0;
+      position: relative;
+    }
+
+    .tl-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      color: var(--caramel);
+      text-align: right;
+      padding-top: 2px;
+      padding-right: 1rem;
+      white-space: nowrap;
+    }
+
+    .tl-axis {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tl-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--caramel);
+      background: var(--cream);
+      flex-shrink: 0;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-line-seg {
+      flex: 1;
+      width: 1px;
+      background: var(--tan);
+    }
+
+    .tl-item:last-child .tl-line-seg {
+      display: none;
+    }
+
+    .tl-content {
+      padding: 0 0 2.5rem 1rem;
+    }
+
+    .tl-event {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--brown-deep);
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+
+    /* ── EDITORIAL GALLERY ── */
+    .gallery-editorial {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .ge-row {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .ge-row-full {
+      flex-direction: column;
+    }
+
+    .ge-row-2 {
+      flex-direction: row;
+    }
+
+    .ge-row-3 {
+      flex-direction: row;
+    }
+
+    .ge-row-1 {
+      flex-direction: row;
+    }
+
+    .ge-row-1r {
+      flex-direction: row;
+    }
+
+    .ge-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    /* Slot sizes */
+    .ge-landscape {
+      flex: 1.6;
+      height: 220px;
+    }
+
+    .ge-portrait-tall {
+      flex: 1;
+      height: 220px;
+    }
+
+    .ge-square {
+      flex: 1;
+      height: 160px;
+    }
+
+    .ge-banner {
+      width: 100%;
+      height: 200px;
+    }
+
+    .ge-square-sm {
+      height: 106px;
+    }
+
+    .ge-landscape-sm {
+      flex: 1;
+      height: 155px;
+    }
+
+    .ge-portrait-sm {
+      flex: 1;
+      height: 195px;
+    }
+
+    .g-item {
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: var(--parchment);
+    }
+
+    .g-item img {
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .g-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .g-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(59, 42, 26, 0);
+      transition: background 0.4s;
+      pointer-events: none;
+    }
+
+    .g-item:hover::after {
+      background: rgba(59, 42, 26, 0.08);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(15, 10, 6, 0.97);
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lb-img {
+      max-width: 100%;
+      max-height: 88svh;
+      object-fit: contain;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.3rem 0.6rem;
+      transition: color 0.2s;
+    }
+
+    .lb-close:hover {
+      color: #fff;
+    }
+
+    .lb-prev,
+    .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.2rem;
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      line-height: 1;
+    }
+
+    .lb-prev {
+      left: 0.5rem;
+    }
+
+    .lb-next {
+      right: 0.5rem;
+    }
+
+    .lb-prev:hover,
+    .lb-next:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .lb-counter {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    #faq.active {
+      background: var(--brown-deep);
+    }
+
+    /* Wrapper that gives flower3 its positioning context — same idea as .home-collage */
+    .faq-collage {
+      position: relative;
+      overflow: visible;
+    }
+
+    #faq .sec-title {
+      color: var(--caramel);
+    }
+
+    #faq .sec-eyebrow {
+      color: rgba(201, 145, 90, 0.6);
+    }
+
+    #faq .sec-rule {
+      background: rgba(201, 145, 90, 0.4);
+    }
+
+    #faq .back-btn {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    #faq .back-btn:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .faq-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(201, 145, 90, 0.2);
+      padding: 1.6rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid rgba(201, 145, 90, 0.2);
+    }
+
+    .faq-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .faq-a {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.9;
+    }
+
+    .faq-a a {
+      color: var(--caramel);
+      text-underline-offset: 3px;
+    }
+
+    .faq-map {
+      margin-top: 1rem;
+      border: 1px solid rgba(201, 145, 90, 0.2);
+      overflow: hidden;
+    }
+
+    .faq-map iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .reveal-d1 {
+      animation-delay: 0.05s;
+    }
+
+    .reveal-d2 {
+      animation-delay: 0.12s;
+    }
+
+    .reveal-d3 {
+      animation-delay: 0.19s;
+    }
+
+    .reveal-d4 {
+      animation-delay: 0.26s;
+    }
+
+    .page.active {
+      animation: pageIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--tan);
+    }
+
+    .music-player {
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1rem;
+      z-index: 9000;
+    }
+
+    .music-pill {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(212, 184, 150, 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 50px;
+      padding: 0.3rem 0.3rem 0.3rem 0.85rem;
+      border: 1px solid rgba(180, 150, 110, 0.3);
+    }
+
+    .music-pill-text {
+      flex: 1;
+      min-width: 0;
+      margin-right: 0.6rem;
+    }
+
+    .music-hint {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.68rem;
+      color: var(--brown-deep);
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: opacity 0.4s ease;
+    }
+
+    .music-player.playing .music-hint {
+      display: none;
+    }
+
+    .music-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      color: var(--brown-deep);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+      display: none;
+    }
+
+    .music-player.playing .music-label {
+      display: block;
+    }
+
+    .music-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--brown-deep);
+      border: 2px solid var(--caramel);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(59, 42, 26, 0.35);
+      transition: box-shadow 0.3s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .music-btn:hover {
+      box-shadow: 0 6px 28px rgba(59, 42, 26, 0.5);
+      transform: scale(1.06);
+    }
+
+    .vinyl {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, #fff5e8 0%, #fff5e8 12%, transparent 12%),
+        repeating-radial-gradient(circle at 50% 50%,
+          #2c1d0e 0px, #3b2a1a 3px, #2c1d0e 4px, #4a3422 6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+
+      animation: none;
+    }
+
+    .music-player.playing .vinyl {
+      animation: spin 4s linear infinite;
+    }
+
+
+    .vinyl::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--caramel);
+      position: absolute;
+    }
+
+    .music-icon {
+      position: absolute;
+      color: #fff5e8;
+      font-size: 0.9rem;
+      line-height: 1;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .music-btn:hover .music-icon {
+      opacity: 1;
+    }
+
+    .music-btn::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--caramel);
+      opacity: 0;
+      animation: none;
+    }
+
+    .music-player.playing .music-btn::before {
+      animation: ripple 2s ease-out infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: scale(1.6);
+        opacity: 0;
+      }
+    }
+
+    /* ── MOBILE: up to 420px (small phones like iPhone SE) ── */
+    @media (max-width: 420px) {
+      .nav-grid {
+        gap: 0.5rem;
+        padding: 0 0.9rem 1rem;
+      }
+
+      .back-btn-bar {
+        padding: 0.6rem 1.2rem;
+        margin: 0 -1.2rem 1.5rem;
+      }
+
+      .section-wrap {
+        padding: 0 1rem 2rem;
+      }
+
+      .std-wrap {
+        padding: 2.4rem 0.9rem 1.5rem;
+      }
+
+      .std-card {
+        padding: 2.2rem 1.2rem;
+      }
+
+      .std-names {
+        font-size: clamp(2rem, 9vw, 2.6rem);
+        margin-bottom: 1.4rem;
+      }
+
+      .std-num {
+        font-size: 3.2rem;
+      }
+
+      .nav-card {
+        padding: 1.5rem 0.8rem;
+      }
+
+      .nav-card-title {
+        font-size: 1.35rem;
+      }
+
+      .nav-card-gallery .nav-card-title {
+        font-size: 1.5rem;
+      }
+
+      .sec-title {
+        font-size: clamp(2.2rem, 9vw, 3rem);
+        line-height: 1.15;
+      }
+
+      .sec-eyebrow {
+        font-size: 0.62rem;
+        letter-spacing: 0.22em;
+      }
+
+      .tl-item {
+        grid-template-columns: 60px 24px 1fr;
+      }
+
+      .tl-time {
+        font-size: 0.72rem;
+        padding-right: 0.7rem;
+      }
+
+      .tl-event {
+        font-size: 1rem;
+      }
+
+      .tl-note {
+        font-size: 0.78rem;
+      }
+
+      .tl-content {
+        padding: 0 0 2rem 0.8rem;
+      }
+
+      .dc-item {
+        flex: 0 0 135px;
+      }
+
+      .dc-photo,
+      .dc-photo-ph {
+        width: 135px;
+        height: 185px;
+      }
+
+      .dc-intro {
+        font-size: 0.85rem;
+        line-height: 1.8;
+      }
+
+      .venue-name {
+        font-size: 1.2rem;
+      }
+
+      .faq-q {
+        font-size: 0.92rem;
+      }
+
+      .faq-a {
+        font-size: 0.8rem;
+      }
+
+      .faq-item {
+        padding: 1.3rem 0;
+      }
+
+      .landing-names {
+        font-size: clamp(3rem, 12vw, 4.5rem) !important;
+      }
+
+      .landing-date {
+        font-size: 1.2rem;
+        letter-spacing: 0.3em;
+        margin: 0.5rem 0 2.5rem;
+      }
+
+      .music-pill {
+        padding: 0.25rem 0.25rem 0.25rem 0.7rem;
+      }
+
+      .music-hint,
+      .music-label {
+        font-size: 0.6rem;
+        max-width: 130px;
+      }
+
+      .back-btn {
+        font-size: 0.6rem;
+        margin-bottom: 2rem;
+      }
+
+      .sec-rule {
+        margin: 1rem 0 1.6rem;
+      }
+
+      .info-key {
+        min-width: 60px;
+        font-size: 0.58rem;
+      }
+
+      .info-row {
+        font-size: 0.8rem;
+      }
+
+      .map-card {
+        padding: 1.1rem 1.2rem;
+      }
+
+      .map-card-venue {
+        font-size: 0.82rem;
+      }
+
+      .map-card-address {
+        font-size: 0.68rem;
+      }
+    }
+
+    /* ── MOBILE: 421px–600px (mid phones like iPhone 14, Pixel) ── */
+    @media (min-width: 421px) and (max-width: 600px) {
+      .section-wrap {
+        padding: 2.8rem 1.3rem 2.2rem;
+      }
+
+      .std-wrap {
+        padding: 2.8rem 1.2rem 1.8rem;
+      }
+
+      .std-card {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .std-names {
+        font-size: clamp(2.2rem, 9vw, 2.9rem);
+        margin-bottom: 1.6rem;
+      }
+
+      .nav-card {
+        padding: 1.6rem 0.9rem;
+      }
+
+      .nav-card-title {
+        font-size: 1.5rem;
+      }
+
+      .tl-item {
+        grid-template-columns: 66px 26px 1fr;
+      }
+
+      .tl-time {
+        font-size: 0.76rem;
+      }
+
+      .dc-item {
+        flex: 0 0 140px;
+      }
+
+      .dc-photo,
+      .dc-photo-ph {
+        width: 140px;
+        height: 195px;
+      }
+
+      .music-pill {
+        padding: 0.28rem 0.28rem 0.28rem 0.75rem;
+      }
+    }
+
+    /* ── TABLET+: 601px–768px ── */
+    @media (min-width: 601px) and (max-width: 768px) {
+      .section-wrap {
+        padding: 3.5rem 2rem 2.5rem;
+      }
+
+      .std-card {
+        padding: 2.8rem 2rem;
+      }
+
+      .nav-grid {
+        padding: 0 1.5rem 1.5rem;
+        gap: 0.8rem;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SCROLL-TRIGGERED ANIMATION SYSTEM
+       Elegant · Soft Luxury · Romantic · Minimalist Wedding
+    ══════════════════════════════════════════════════════════════ */
+
+    /* ── Base "pre-animation" states — all invisible until IO fires ── */
+    [data-reveal] {
+      will-change: transform, opacity;
+    }
+
+    /* FADE UP */
+    [data-reveal="fade-up"] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition:
+        opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* FADE LEFT (slides in from right) */
+    [data-reveal="fade-left"] {
+      opacity: 0;
+      transform: translateX(40px);
+      transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* FADE RIGHT (slides in from left) */
+    [data-reveal="fade-right"] {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ZOOM IN */
+    [data-reveal="zoom-in"] {
+      opacity: 0;
+      transform: scale(0.92);
+      transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ZOOM IN SOFT — subtler, for text elements */
+    [data-reveal="zoom-soft"] {
+      opacity: 0;
+      transform: scale(0.97) translateY(12px);
+      transition:
+        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* FLOAT FLOWER — gentle sway-up for decorative botanicals */
+    [data-reveal="float-flower"] {
+      opacity: 0;
+      transform: translateY(28px) rotate(-3deg) scale(0.94);
+      transition:
+        opacity 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* STAGGER DELAYS — apply alongside data-reveal */
+    [data-delay="100"] { transition-delay: 0.1s; }
+    [data-delay="150"] { transition-delay: 0.15s; }
+    [data-delay="200"] { transition-delay: 0.2s; }
+    [data-delay="250"] { transition-delay: 0.25s; }
+    [data-delay="300"] { transition-delay: 0.3s; }
+    [data-delay="350"] { transition-delay: 0.35s; }
+    [data-delay="400"] { transition-delay: 0.4s; }
+    [data-delay="500"] { transition-delay: 0.5s; }
+    [data-delay="600"] { transition-delay: 0.6s; }
+    [data-delay="700"] { transition-delay: 0.7s; }
+    [data-delay="800"] { transition-delay: 0.8s; }
+
+    /* ── REVEALED STATE — added/removed by IntersectionObserver ── */
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Special override for float-flower visible state — keeps a gentle tilt */
+    [data-reveal="float-flower"].is-visible {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    /* ── FLOATING FLOWER IDLE ANIMATION (after reveal) ── */
+    @keyframes floatIdleA {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      30%       { transform: translateY(-6px) rotate(1.5deg); }
+      70%       { transform: translateY(-3px) rotate(-1deg); }
+    }
+    @keyframes floatIdleB {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      40%       { transform: translateY(-8px) rotate(-1.5deg); }
+      80%       { transform: translateY(-4px) rotate(1deg); }
+    }
+    @keyframes floatIdleC {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25%       { transform: translateY(-5px) rotate(2deg); }
+      65%       { transform: translateY(-9px) rotate(-1deg); }
+    }
+
+    /* Applied after reveal completes (JS adds .float-idle-a/b/c class) */
+    .float-idle-a { animation: floatIdleA 5s ease-in-out infinite; }
+    .float-idle-b { animation: floatIdleB 6.5s ease-in-out infinite; }
+    .float-idle-c { animation: floatIdleC 7.5s ease-in-out infinite; }
+
+    /* Pause idle float when element leaves viewport (handled by JS removing class) */
+
+    /* ── TIMELINE ITEM REVEAL — stagger each row ── */
+    .tl-item[data-reveal] {
+      transition-duration: 0.7s;
+    }
+
+    /* ── GALLERY ROW REVEAL ── */
+    .ge-row[data-reveal] {
+      transition-duration: 0.75s;
+    }
+
+    /* ── FAQ ITEM REVEAL ── */
+    .faq-item[data-reveal] {
+      transition-duration: 0.65s;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       MOBILE RESPONSIVENESS IMPROVEMENTS
+    ══════════════════════════════════════════════════════════════ */
+
+    /* Prevent horizontal overflow without creating new scroll contexts */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* Global safe horizontal padding for mobile */
+    @media (max-width: 600px) {
+
+      /* ── Section wrap mobile spacing ── */
+      .section-wrap {
+        padding: 0 1.2rem 3rem;
+      }
+
+      /* ── Home collage: tighter but still breathing ── */
+      .home-collage {
+        padding: 2rem 1rem 0;
+      }
+
+      /* ── Venue label overlap on small screens ── */
+      .home-std-row {
+        padding: 0 0.7rem;
+      }
+
+      /* ── Couple row padding ── */
+      .home-couple-row {
+        padding: 0 0.5rem;
+      }
+
+      /* ── Nav strip fits screen ── */
+      .home-nav-strip {
+        padding: 0 0.5rem;
+      }
+
+      /* ── Polaroid: let it breathe but not overflow ── */
+      .home-polaroid {
+        flex: 0 0 44%;
+      }
+
+      /* ── Names don't overflow ── */
+      .home-couple-names {
+        font-size: clamp(1.45rem, 5vw, 2rem);
+        word-break: break-word;
+      }
+
+      /* ── Home hero inner padding ── */
+      .home-hero {
+        padding: 1.5rem 1.2rem 1.3rem;
+      }
+
+      /* ── Info list on mobile ── */
+      .info-row {
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .info-key {
+        min-width: unset;
+      }
+
+      /* ── Venue photos grid ── */
+      .venue-photos {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4rem;
+      }
+
+      /* ── Timeline: tighter grid ── */
+      .tl-item {
+        grid-template-columns: 58px 22px 1fr;
+      }
+
+      /* ── Gallery editorial padding ── */
+      .gallery-editorial {
+        padding: 0 0.85rem 2rem;
+        gap: 0.4rem;
+      }
+
+      /* ── Gallery rows: allow stacking on very small screens ── */
+      .ge-row-3 {
+        flex-wrap: wrap;
+      }
+
+      .ge-row-3 .g-item {
+        min-width: calc(33.333% - 0.27rem);
+        flex: 1 1 calc(33.333% - 0.27rem);
+      }
+
+      /* ── FAQ section ── */
+      .faq-collage .section-wrap {
+        padding: 0 1.1rem 3rem;
+      }
+
+      /* ── Back btn bar ── */
+      .back-btn-bar {
+        margin: 0 -1.2rem 1.8rem;
+        padding: 0.7rem 1.2rem;
+      }
+
+      /* ── Dress code intro text ── */
+      .dc-intro {
+        font-size: 0.87rem;
+      }
+
+      /* ── Palette row ── */
+      .palette-row {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      /* ── Map card ── */
+      .map-card {
+        padding: 1.1rem 1rem;
+        gap: 0.9rem;
+      }
+
+      /* ── Music player: smaller pill on mobile ── */
+      .music-player {
+        bottom: 0.9rem;
+        right: 0.75rem;
+      }
+
+      /* ── Footer ── */
+      footer {
+        padding: 2rem 1.1rem;
+      }
+    }
+
+    /* ── Very small phones (SE, Moto G) ── */
+    @media (max-width: 375px) {
+      .home-collage {
+        padding: 1.6rem 0.8rem 0;
+      }
+
+      .home-hero {
+        padding: 1.3rem 1rem 1.1rem;
+      }
+
+      .home-std-row {
+        padding: 0 0.5rem;
+      }
+
+      .home-couple-row {
+        padding: 0 0.4rem;
+      }
+
+      .home-polaroid {
+        flex: 0 0 42%;
+      }
+
+      .home-venue-btn {
+        flex: 0 0 80px;
+        padding: 0.85rem 0.4rem;
+      }
+
+      .home-nav-strip {
+        gap: 0.4rem;
+        padding: 0 0.4rem;
+      }
+
+      .home-nav-tall {
+        flex: 0 0 38%;
+        padding: 1.5rem 0.6rem;
+      }
+
+      .tl-item {
+        grid-template-columns: 52px 20px 1fr;
+      }
+
+      .tl-time {
+        font-size: 0.68rem;
+        padding-right: 0.6rem;
+      }
+
+      .section-wrap {
+        padding: 0 1rem 2.5rem;
+      }
+
+      .back-btn-bar {
+        margin: 0 -1rem 1.6rem;
+        padding: 0.65rem 1rem;
+      }
+    }
+
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .float-idle-a,
+      .float-idle-b,
+      .float-idle-c {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ============================================================
+     PAGE 1: LANDING — Cinematic 3D Envelope
+============================================================ -->
+  <div id="landing">
+    <!-- Blur overlay — activates when envelope opens -->
+    <div class="landing-blur-overlay"></div>
+
+    <h1 class="landing-names">Jezle <span class="landing-amp">&</span> Vengie</h1>
+    <p class="landing-date">08 &nbsp;&middot;&nbsp; 14 &nbsp;&middot;&nbsp; 26</p>
+
+    <div class="env-scene" id="envelope" onclick="openEnvelope()" role="button" aria-label="Click to open invitation">
+
+      <div class="env-body">
+
+        <!-- LAYER 1: FLAP — behind the letter when open -->
+        <div class="env-svg-wrap env-flap-layer">
+          <svg class="env-main-svg" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="eTex2" x="-2%" y="-2%" width="104%" height="104%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"
+                  result="noise" />
+                <feColorMatrix type="saturate" values="0" in="noise" result="gray" />
+                <feBlend in="SourceGraphic" in2="gray" mode="multiply" result="blend" />
+                <feComposite in="blend" in2="SourceGraphic" operator="in" />
+              </filter>
+            </defs>
+            <!-- Transparent rect to keep viewBox geometry identical -->
+            <rect x="0" y="80" width="680" height="380" fill="none" />
+            <!-- TOP FLAP -->
+            <g class="env-flap-group">
+              <polygon points="0,80 680,80 340,296" fill="#4a3422" filter="url(#eTex2)" opacity="0.97" />
+              <polygon points="6,80 674,80 340,289" fill="#5a4230" opacity="0.45" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- LAYER 2: LETTER — above flap, below envelope body -->
+        <div class="env-letter" id="env-letter">
+          <span class="env-letter-names">
+            Jezle
+            <span class="env-letter-amp">&amp;</span>
+            Vengie
+          </span>
+          <span class="env-letter-date">
+            August · 14 · 2026
+          </span>
+          <div class="env-letter-divider"></div>
+          <span class="env-letter-quote">
+            "Two souls, one heart — today we begin forever."
+          </span>
+        </div>
+
+        <!-- LAYER 3: ENVELOPE BODY — always on top, letter rises from behind -->
+        <div class="env-svg-wrap env-body-layer">
+          <svg class="env-main-svg" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="eTex" x="-2%" y="-2%" width="104%" height="104%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"
+                  result="noise" />
+                <feColorMatrix type="saturate" values="0" in="noise" result="gray" />
+                <feBlend in="SourceGraphic" in2="gray" mode="multiply" result="blend" />
+                <feComposite in="blend" in2="SourceGraphic" operator="in" />
+              </filter>
+            </defs>
+            <!-- ENVELOPE BODY -->
+            <rect x="0" y="80" width="680" height="380" rx="4" fill="#3b2a1a" filter="url(#eTex)" />
+            <polygon points="0,80 0,460 260,290" fill="#2e1f12" />
+            <polygon points="680,80 680,460 420,290" fill="#2e1f12" />
+            <polygon points="0,460 340,270 680,460" fill="#2c1d0e" />
+          </svg>
+        </div>
+
+        <!-- LAYER 4: SEAL — always above everything, including the flap -->
+        <div class="env-svg-wrap env-seal-layer">
+          <svg class="env-main-svg" viewBox="0 0 680 460" xmlns="http://www.w3.org/2000/svg">
+            <g class="env-seal-group" transform="translate(340, 296)">
+              <circle cx="1" cy="2" r="50" fill="rgba(0,0,0,0.32)" />
+              <circle cx="0" cy="0" r="48" fill="#2a1a0e" />
+              <circle cx="0" cy="0" r="47" fill="none" stroke="#c9915a" stroke-width="1.4" opacity="0.95" />
+              <circle cx="0" cy="0" r="40" fill="none" stroke="#c9915a" stroke-width="1" opacity="0.8" />
+              <text x="0" y="15" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="46"
+                fill="#c9915a">JV</text>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+    <p class="env-hint" id="env-hint">Tap to Open...</p>
+  </div>
+
+
+  <!-- ============================================================
+     PAGE 2: HOME — Editorial Collage Layout
+============================================================ -->
+  <div id="home" class="page">
+
+    <div class="home-collage">
+
+      <!-- ── FLOWER OVERLAYS ── -->
+      <!-- flower1: left side, spanning from Save the Date up through venue photo into You Are Invited -->
+      <img src="flower1.png" class="flower-overlay flower-grass" alt="" aria-hidden="true" />
+      <!-- flower2: right side beside The Wedding Of / couple section -->
+      <img src="flower2.png" class="flower-overlay flower-bouquet" alt="" aria-hidden="true" />
+      <!-- flower3: left side lower, beside couple/nav section -->
+      <img src="flower3.png" class="flower-overlay flower-rose" alt="" aria-hidden="true" />
+
+      <!-- ① JV logo circle + You're Invited -->
+      <div class="home-hero">
+        <div class="home-hero-logo">
+          <span class="home-hero-monogram">JV</span>
+        </div>
+        <span class="home-hero-invited">You Are Invited</span>
+      </div>
+
+      <!-- ② Venue photo — full bleed -->
+      <div class="home-venue-img">
+        <!--
+          SWAP: Replace div below with <img src="venue.jpg" alt="Venue" />
+        -->
+        <div class="img-ph" style="height:100%;font-size:0.65rem;letter-spacing:0.18em;">venue.jpg</div>
+        <div class="home-venue-img-label">San Vicente Ferrer Quasi Parish</div>
+      </div>
+
+      <!-- ③ Save the Date + Venue Details tile — overlapping photo -->
+      <div class="home-std-row">
+
+        <div class="home-std-card">
+          <span class="home-std-label">Save the Date</span>
+          <div class="home-std-date-block">
+            <span class="home-std-num">14</span>
+            <div class="home-std-date-meta">
+              <span class="home-std-dow">Friday</span>
+              <span class="home-std-mo">August</span>
+              <span class="home-std-yr">2026</span>
+            </div>
+          </div>
+          <div class="home-std-divider"></div>
+          <span class="home-std-venue">San Vicente Ferrer Quasi Parish</span>
+        </div>
+
+        <a class="home-venue-btn" href="#" onclick="showPage('details'); return false;">
+          <!-- Map pin icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+          </svg>
+          <span class="home-venue-btn-label">Venue<br>Details</span>
+        </a>
+
+      </div>
+
+      <!-- ④ Couple photo polaroid + quick nav links -->
+      <div class="home-couple-row">
+
+        <div class="home-polaroid">
+          <!--
+            SWAP: Replace div below with <img src="couple.jpg" alt="Jezle and Vengie" />
+          -->
+          <div class="img-ph" style="height:155px;font-size:0.6rem;letter-spacing:0.12em;">couple.jpg</div>
+          <p class="home-polaroid-cap">Jezle <span
+              style="font-size:0.55em;font-family:'Cormorant Garamond',serif;font-style:italic;vertical-align:middle;opacity:0.7;">&amp;</span>
+            Vengie</p>
+        </div>
+
+        <div class="home-couple-info">
+          <span class="home-couple-sub">The Wedding of</span>
+          <div class="home-couple-names">
+            Jezle <span class="home-couple-amp">&</span> Vengie
+          </div>
+
+          <div class="home-mini-btns">
+            <a class="home-mini-btn" href="#" onclick="showPage('dresscode'); return false;">
+              <!-- Hanger / shirt icon -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M21.5 18l-9-7.5L3.5 18H2l10-8.4 10 8.4h-0.5zM12 3a2 2 0 0 1 2 2c0 .74-.4 1.38-1 1.73V8l8.5 7H2.5L11 8V6.73A2 2 0 0 1 10 5a2 2 0 0 1 2-2z" />
+              </svg>
+              Dress Code
+            </a>
+            <a class="home-mini-btn" href="#" onclick="showPage('timeline'); return false;">
+              <!-- Clock icon -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" />
+              </svg>
+              Timeline
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ⑤ Bottom nav strip — Prenuptial tall + FAQs + Bible verse -->
+      <div class="home-nav-strip">
+
+        <!-- Prenuptial is now the big tall button -->
+        <a class="home-nav-tall" href="#" onclick="showPage('gallery'); return false;">
+          <!-- Camera / photos icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 15.2A3.2 3.2 0 0 1 8.8 12 3.2 3.2 0 0 1 12 8.8 3.2 3.2 0 0 1 15.2 12 3.2 3.2 0 0 1 12 15.2M9 3L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9z" />
+          </svg>
+          <span class="nav-eye">Browse Our</span>
+          <span class="nav-title">Prenuptial ✦</span>
+        </a>
+
+        <div class="home-nav-stack">
+          <!-- FAQs is now the small button -->
+          <a class="home-nav-sm" href="#" onclick="showPage('faq'); return false;">
+            <!-- Question mark / help icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
+            </svg>
+            <span class="nav-eye">Questions?</span>
+            <span class="nav-title">FAQs</span>
+          </a>
+          <!-- Bible verse card replacing the duplicate Timeline -->
+          <div class="home-nav-sm home-nav-verse">
+            <span class="nav-verse-text">"Two are better than one… a cord of three strands is not quickly
+              broken."</span>
+            <span class="nav-verse-ref">Ecclesiastes 4:9–12</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /.home-collage -->
+
+    <footer style="max-width:480px;margin:0 auto;">
+      Jezle &amp; Vengie &nbsp;·&nbsp; August 14, 2026
+    </footer>
+  </div>
+
+
+  <!-- ============================================================
+     PAGE 3: DETAILS
+============================================================ -->
+  <div id="details" class="page">
+    <div class="section-wrap">
+      <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
+
+      <p class="sec-eyebrow" data-reveal="fade-up">Venue Information</p>
+      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Details</h2>
+      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+
+      <!-- CEREMONY -->
+      <div class="venue-block" data-reveal="fade-up" data-delay="150">
+        <p class="venue-label">Ceremony</p>
+
+        <h3 class="venue-name">San Vicente Ferrer Quasi Parish</h3>
+
+        <!-- Venue photos -->
+        <div class="venue-photos" data-reveal="zoom-in" data-delay="200">
+          <!--
+          SWAP: Replace these placeholders with actual venue photos.
+          Tip: Use src="ceremony-exterior.jpg" etc.
+          DESIGN NOTE: Exterior shot wide + 2 interior detail shots work best.
+        -->
+          <div class="img-ph wide">Ceremony Venue Photo</div>
+          <div class="img-ph">Interior</div>
+          <div class="img-ph">Detail</div>
+        </div>
+
+        <ul class="info-list">
+          <!-- SWAP: Ceremony address -->
+          <li class="info-row">
+            <span class="info-key">Address</span>
+            <span class="info-val">Pasian, Monkayo, Davao de Oro</span>
+          </li>
+          <!-- SWAP: Ceremony Google Maps link is in the map card below -->
+        </ul>
+
+        <!-- Map card — themed to match the invitation; tapping opens Google Maps.
+           SWAP: Update href with the correct Google Maps link for the ceremony venue.
+           Google Maps iframe embeds cannot be recolored, so we use this card instead. -->
+        <a class="map-card" data-reveal="fade-up" data-delay="250" href="https://maps.google.com/?q=San+Vicente+Ferrer+Quasi+Parish+Monkayo+Davao+de+Oro"
+          target="_blank" rel="noopener" aria-label="Open ceremony venue in Google Maps">
+          <div class="map-card-pin">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+          </div>
+          <div class="map-card-text">
+            <span class="map-card-label">Ceremony Venue</span>
+            <!-- SWAP: Update venue name and address as needed -->
+            <span class="map-card-venue">San Vicente Ferrer Quasi Parish</span>
+            <span class="map-card-address">Pasian, Monkayo, Davao de Oro</span>
+          </div>
+          <span class="map-card-arrow">→</span>
+        </a>
+      </div>
+
+      <hr class="divider">
+
+      <!-- RECEPTION -->
+      <div class="venue-block" data-reveal="fade-up" data-delay="100">
+        <p class="venue-label">Reception</p>
+
+        <h3 class="venue-name">Basañes Garden Resto and Events</h3>
+
+        <!-- Venue photos -->
+        <div class="venue-photos">
+          <!--
+          SWAP: Replace with actual reception venue photos.
+          DESIGN NOTE: Garden/outdoor setting shot + table setup work great.
+        -->
+          <div class="img-ph wide">Reception Venue Photo</div>
+          <div class="img-ph">Garden Area</div>
+          <div class="img-ph">Setup</div>
+        </div>
+
+        <ul class="info-list">
+          <!-- SWAP: Reception address -->
+          <li class="info-row">
+            <span class="info-key">Address</span>
+            <span class="info-val">Monkayo, Davao de Oro</span>
+          </li>
+          <!-- SWAP: Reception Google Maps link is in the map card below -->
+        </ul>
+
+        <!-- Map card — themed to match the invitation; tapping opens Google Maps.
+           SWAP: Update href with the correct Google Maps link for the reception venue. -->
+        <a class="map-card" data-reveal="fade-up" data-delay="200" href="https://maps.google.com/?q=Basanes+Garden+Resto+Events+Monkayo+Davao+de+Oro"
+          target="_blank" rel="noopener" aria-label="Open reception venue in Google Maps">
+          <div class="map-card-pin">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+          </div>
+          <div class="map-card-text">
+            <span class="map-card-label">Reception Venue</span>
+            <!-- SWAP: Update venue name and address as needed -->
+            <span class="map-card-venue">Basañes Garden Resto and Events</span>
+            <span class="map-card-address">Monkayo, Davao de Oro</span>
+          </div>
+          <span class="map-card-arrow">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+     PAGE 4: DRESS CODE
+============================================================ -->
+  <div id="dresscode" class="page">
+    <div class="section-wrap">
+      <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
+
+      <p class="sec-eyebrow" data-reveal="fade-up">What to Wear</p>
+      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Dress Code</h2>
+      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+
+      <!-- SWAP: Dress code label -->
+      <div class="dc-theme-badge" data-reveal="zoom-soft" data-delay="150">Brown Palette · Semi Formal</div>
+
+      <!-- SWAP: Attire description message to guests -->
+      <p class="dc-intro" data-reveal="fade-up" data-delay="200">
+        We kindly invite you to dress in warm, earthy tones that complement
+        our celebration. Think browns, tans, caramels, creams, and soft nudes.
+        Please avoid white, off-white, and ivory out of respect for the bride.
+        Dress comfortably — the reception is held in a garden setting.
+      </p>
+
+      <!-- Color Palette Swatches -->
+      <div class="palette-row" data-reveal="fade-up" data-delay="100">
+        <!-- SWAP: Replace hex values with the couple's preferred attire colors -->
+        <div class="swatch" style="background:#3b2a1a;" title="Deep Brown"></div>
+        <div class="swatch" style="background:#7a5230;" title="Warm Brown"></div>
+        <div class="swatch" style="background:#a0673a;" title="Caramel"></div>
+        <div class="swatch" style="background:#c9915a;" title="Tan"></div>
+        <div class="swatch" style="background:#d4b896;" title="Sand"></div>
+        <div class="swatch" style="background:#e8d8c0;" title="Linen"></div>
+        <div class="swatch" style="background:#f5ede0;" title="Cream"></div>
+        <span class="palette-label">Preferred palette</span>
+      </div>
+
+      <!-- ── WOMEN'S ATTIRE ── -->
+      <div class="dc-gender-block" data-reveal="fade-up" data-delay="100">
+        <h3 class="dc-gender-title">For the Ladies</h3>
+        <p class="scroll-hint">Scroll to see more</p>
+        <div class="dc-carousel-wrap">
+          <button class="dc-arrow dc-arrow-left" onclick="scrollCarousel('scroll-women',-1)"
+            aria-label="Previous">&#8592;</button>
+          <div class="dc-scroll" id="scroll-women">
+
+            <!-- SWAP: Replace each placeholder with an actual attire reference photo
+             src="women-look-1.jpg" etc.
+             DESIGN NOTE: Flat lays, editorial shots, or Pinterest-style outfit photos
+             work best. Aim for consistent lighting and style across all 8 photos. -->
+
+            <!-- Look 1 -->
+            <div class="dc-item">
+              <img src="dress_code/F1.jpg" alt="Women Look 1" class="dc-photo" onclick="openLightbox(this, 0)" />
+              <span class="dc-caption">Look 1</span>
+            </div>
+            <!-- Look 2 -->
+            <div class="dc-item">
+              <img src="dress_code/F2.jpg" alt="Women Look 2" class="dc-photo" onclick="openLightbox(this, 1)" />
+              <span class="dc-caption">Look 2</span>
+            </div>
+            <!-- Look 3 -->
+            <div class="dc-item">
+              <img src="dress_code/F3.jpg" alt="Women Look 3" class="dc-photo" onclick="openLightbox(this, 2)" />
+              <span class="dc-caption">Look 3</span>
+            </div>
+            <!-- Look 4 -->
+            <div class="dc-item">
+              <img src="dress_code/F4.jpg" alt="Women Look 4" class="dc-photo" onclick="openLightbox(this, 3)" />
+              <span class="dc-caption">Look 4</span>
+            </div>
+            <!-- Look 5 -->
+            <div class="dc-item">
+              <img src="dress_code/F5.jpg" alt="Women Look 5" class="dc-photo" onclick="openLightbox(this, 4)" />
+              <span class="dc-caption">Look 5</span>
+            </div>
+            <!-- Look 6 -->
+            <div class="dc-item">
+              <img src="dress_code/F6.jpg" alt="Women Look 6" class="dc-photo" onclick="openLightbox(this, 5)" />
+              <span class="dc-caption">Look 6</span>
+            </div>
+            <!-- Look 7 -->
+            <div class="dc-item">
+              <img src="dress_code/F7.jpg" alt="Women Look 7" class="dc-photo" onclick="openLightbox(this, 6)" />
+              <span class="dc-caption">Look 7</span>
+            </div>
+            <!-- Look 8 -->
+            <div class="dc-item">
+              <img src="dress_code/F8.jpg" alt="Women Look 8" class="dc-photo" onclick="openLightbox(this, 7)" />
+              <span class="dc-caption">Look 8</span>
+            </div>
+          </div>
+          <button class="dc-arrow dc-arrow-right" onclick="scrollCarousel('scroll-women',1)"
+            aria-label="Next">&#8594;</button>
+        </div><!-- /.dc-carousel-wrap -->
+      </div>
+
+      <!-- ── MEN'S ATTIRE ── -->
+      <div class="dc-gender-block" data-reveal="fade-up" data-delay="150">
+        <h3 class="dc-gender-title">For the Gentlemen</h3>
+        <p class="scroll-hint">Scroll to see more</p>
+        <div class="dc-carousel-wrap">
+          <button class="dc-arrow dc-arrow-left" onclick="scrollCarousel('scroll-men',-1)"
+            aria-label="Previous">&#8592;</button>
+          <div class="dc-scroll" id="scroll-men">
+
+            <!-- SWAP: Replace each placeholder with actual men's attire reference photos
+             DESIGN NOTE: Outfit flat lays or styled lookbook photos work best.
+             Use consistent background color/style across the 8 images. -->
+
+            <!-- Look 1 -->
+            <div class="dc-item">
+              <img src="dress_code/M1.jpg" alt="Men Look 1" class="dc-photo" onclick="openLightbox(this, 0)" />
+              <span class="dc-caption">Look 1</span>
+            </div>
+            <!-- Look 2 -->
+            <div class="dc-item">
+              <img src="dress_code/M2.jpg" alt="Men Look 2" class="dc-photo" onclick="openLightbox(this, 1)" />
+              <span class="dc-caption">Look 2</span>
+            </div>
+            <!-- Look 3 -->
+            <div class="dc-item">
+              <img src="dress_code/M3.jpg" alt="Men Look 3" class="dc-photo" onclick="openLightbox(this, 2)" />
+              <span class="dc-caption">Look 3</span>
+            </div>
+            <!-- Look 4 -->
+            <div class="dc-item">
+              <img src="dress_code/M4.jpg" alt="Men Look 4" class="dc-photo" onclick="openLightbox(this, 3)" />
+              <span class="dc-caption">Look 4</span>
+            </div>
+            <!-- Look 5 -->
+            <div class="dc-item">
+              <img src="dress_code/M5.jpg" alt="Men Look 5" class="dc-photo" onclick="openLightbox(this, 4)" />
+              <span class="dc-caption">Look 5</span>
+            </div>
+            <!-- Look 6 -->
+            <div class="dc-item">
+              <img src="dress_code/M6.jpg" alt="Men Look 6" class="dc-photo" onclick="openLightbox(this, 5)" />
+              <span class="dc-caption">Look 6</span>
+            </div>
+            <!-- Look 7 -->
+            <div class="dc-item">
+              <img src="dress_code/M7.jpg" alt="Men Look 7" class="dc-photo" onclick="openLightbox(this, 6)" />
+              <span class="dc-caption">Look 7</span>
+            </div>
+            <!-- Look 8 -->
+            <div class="dc-item">
+              <img src="dress_code/M8.jpg" alt="Men Look 8" class="dc-photo" onclick="openLightbox(this, 7)" />
+              <span class="dc-caption">Look 8</span>
+            </div>
+          </div>
+          <button class="dc-arrow dc-arrow-right" onclick="scrollCarousel('scroll-men',1)"
+            aria-label="Next">&#8594;</button>
+        </div><!-- /.dc-carousel-wrap -->
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+     PAGE 5: TIMELINE
+============================================================ -->
+  <div id="timeline" class="page">
+    <div class="section-wrap">
+      <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
+
+      <p class="sec-eyebrow" data-reveal="fade-up">The Day's Schedule</p>
+      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Timeline</h2>
+      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+
+      <div class="tl-date-badge" data-reveal="zoom-soft" data-delay="200">Friday · August 14, 2026</div>
+
+      <ul class="tl-list">
+
+        <li class="tl-item" data-reveal="fade-right" data-delay="100">
+          <span class="tl-time">9:00 AM</span>
+          <div class="tl-axis">
+            <div class="tl-dot"></div>
+            <div class="tl-line-seg"></div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-event">Ceremony of the Sacrament</p>
+
+            <p class="tl-note">We warmly invite you to witness this sacred and meaningful celebration as we begin the
+              day with faith, gratitude, and love. Kindly arrive a few minutes early to ensure a smooth and solemn
+              ceremony.</p>
+          </div>
+        </li>
+
+        <li class="tl-item" data-reveal="fade-right" data-delay="200">
+          <span class="tl-time">10:30 AM</span>
+          <div class="tl-axis">
+            <div class="tl-dot"></div>
+            <div class="tl-line-seg"></div>
+          </div>
+          <div class="tl-content">
+
+            <p class="tl-event">Snacks & Refreshments</p>
+
+            <p class="tl-note">After the ceremony, please enjoy light snacks and refreshments while taking time to
+              relax, mingle, and share joyful moments with family and friends.</p>
+          </div>
+        </li>
+
+        <li class="tl-item" data-reveal="fade-right" data-delay="300">
+          <span class="tl-time">11:00 AM</span>
+          <div class="tl-axis">
+            <div class="tl-dot"></div>
+            <div class="tl-line-seg"></div>
+          </div>
+          <div class="tl-content">
+            <p class="tl-event">Reception & Short Program</p>
+
+            <p class="tl-note">Join us for a simple reception and short program as we continue the celebration together.
+              We hope you enjoy the food, laughter, and memories shared throughout this special occasion.</p>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+     PAGE 6: PRENUPTIAL GALLERY
+============================================================ -->
+  <div id="gallery" class="page">
+    <div class="section-wrap" style="padding-bottom:1rem;">
+      <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
+      <p class="sec-eyebrow" data-reveal="fade-up">A Glimpse of Forever</p>
+      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Our Photos</h2>
+      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+    </div>
+
+    <!--
+    PRENUPTIAL GALLERY — Modern Editorial Layout
+    Photo slots are pre-sized for a varied, modern look.
+    To add your photos, replace each <div class="g-ph img-ph"> with:
+      <img src="wed_photos/wed1.jpg" alt="description" style="width:100%;height:100%;object-fit:cover;display:block;" onclick="openLightbox(0)"/>
+    Each slot has a fixed height so all you do is drop in the photo.
+  -->
+    <div class="gallery-editorial" id="gallery-grid">
+
+      <!-- ROW 1: 1 wide + 1 tall portrait (2-col) -->
+      <div class="ge-row ge-row-1" data-reveal="fade-up" data-delay="100">
+        <div class="g-item ge-landscape" onclick="openLightbox(0)">
+          <img src="wed_photos/wed1.jpg" alt="Prenuptial photo 1"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="g-item ge-portrait-tall" onclick="openLightbox(1)">
+          <img src="wed_photos/wed2.jpg" alt="Prenuptial photo 2"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+      </div>
+
+      <!-- ROW 2: 3 equal squares -->
+      <div class="ge-row ge-row-3" data-reveal="fade-up" data-delay="100">
+        <div class="g-item ge-square" onclick="openLightbox(2)">
+          <img src="wed_photos/wed3.jpg" alt="Prenuptial photo 3"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="g-item ge-square" onclick="openLightbox(3)">
+          <img src="wed_photos/wed4.jpg" alt="Prenuptial photo 4"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="g-item ge-square" onclick="openLightbox(4)">
+          <img src="wed_photos/wed5.jpg" alt="Prenuptial photo 5"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+      </div>
+
+      <!-- ROW 3: Full-width cinematic banner -->
+      <div class="ge-row ge-row-full" data-reveal="zoom-in" data-delay="100">
+        <div class="g-item ge-banner" onclick="openLightbox(5)">
+          <img src="wed_photos/wed6.jpg" alt="Prenuptial photo 6"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+      </div>
+
+      <!-- ROW 4: 1 tall portrait + 2 stacked squares -->
+      <div class="ge-row ge-row-1r" data-reveal="fade-left" data-delay="100">
+        <div class="g-item ge-portrait-tall" onclick="openLightbox(6)">
+          <img src="wed_photos/wed7.jpg" alt="Prenuptial photo 7"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="ge-stack">
+          <div class="g-item ge-square-sm" onclick="openLightbox(7)">
+            <img src="wed_photos/wed8.jpg" alt="Prenuptial photo 8"
+              style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="g-item ge-square-sm" onclick="openLightbox(8)">
+            <img src="wed_photos/wed9.jpg" alt="Prenuptial photo 9"
+              style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 5: 2 landscapes -->
+      <div class="ge-row ge-row-2" data-reveal="fade-up" data-delay="100">
+        <div class="g-item ge-landscape-sm" onclick="openLightbox(9)">
+          <img src="wed_photos/wed10.jpg" alt="Prenuptial photo 10"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="g-item ge-landscape-sm" onclick="openLightbox(10)">
+          <img src="wed_photos/wed11.jpg" alt="Prenuptial photo 11"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+      </div>
+
+      <!-- ROW 6: 3 portraits -->
+      <div class="ge-row ge-row-3" data-reveal="fade-right" data-delay="100">
+        <div class="g-item ge-portrait-sm" onclick="openLightbox(11)">
+          <img src="wed_photos/wed12.jpg" alt="Prenuptial photo 12"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="g-item ge-portrait-sm" onclick="openLightbox(12)">
+          <img src="wed_photos/wed13.jpg" alt="Prenuptial photo 13"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+        <div class="g-item ge-portrait-sm" onclick="openLightbox(13)">
+          <img src="wed_photos/wed14.jpg" alt="Prenuptial photo 14"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+      </div>
+
+      <!-- ROW 7: Full-width final -->
+      <div class="ge-row ge-row-full" data-reveal="zoom-in" data-delay="100">
+        <div class="g-item ge-banner" onclick="openLightbox(14)">
+          <img src="wed_photos/wed15.jpg" alt="Prenuptial photo 15"
+            style="width:100%;height:100%;object-fit:cover;display:block;" />
+        </div>
+      </div>
+
+    </div><!-- /.gallery-editorial -->
+  </div><!-- /#gallery -->
+
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+    <button class="lb-prev" onclick="shiftLightbox(-1)" aria-label="Previous">&#8592;</button>
+    <img class="lb-img" id="lb-img" src="" alt="Prenuptial photo" />
+    <button class="lb-next" onclick="shiftLightbox(1)" aria-label="Next">&#8594;</button>
+    <span class="lb-counter" id="lb-counter"></span>
+  </div>
+
+
+  <!-- ============================================================
+     PAGE 7: FAQ
+============================================================ -->
+  <div id="faq" class="page">
+    <div class="faq-collage">
+
+      <div class="section-wrap">
+        <div class="back-btn-bar"><button class="back-btn back-btn-light" onclick="showPage('home')">Go Back</button>
+        </div>
+
+        <p class="sec-eyebrow" data-reveal="fade-up">Good to Know</p>
+        <h2 class="sec-title" data-reveal="fade-up" data-delay="100">FAQs</h2>
+        <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+
+        <ul class="faq-list">
+
+          <li class="faq-item" data-reveal="fade-up" data-delay="100">
+            <p class="faq-q">How do I get to the ceremony venue?</p>
+            <p class="faq-a">
+              The ceremony is at San Vicente Ferrer Quasi Parish, Pasian, Monkayo, Davao de Oro.
+              From Davao City, take the highway towards Monkayo (approx. 2–3 hours).
+              Look for Pasian barangay and the parish church is prominently visible from the main road.
+              We recommend arriving at least 20–30 minutes early.
+              <br><br>
+              <a href="#" onclick="showPage('details'); return false;"
+                style="color:var(--caramel);text-decoration:underline;text-underline-offset:3px;">View full venue
+                details &amp; directions →</a>
+            </p>
+          </li>
+
+          <li class="faq-item" data-reveal="fade-up" data-delay="150">
+            <p class="faq-q">Are plus ones allowed?</p>
+            <p class="faq-a">
+              Our celebration is intimate, so we kindly ask that only those formally
+              invited attend. If your invitation includes a plus one, it will be
+              indicated on your invite. Thank you for understanding.
+            </p>
+          </li>
+
+          <li class="faq-item" data-reveal="fade-up" data-delay="200">
+            <p class="faq-q">What is the dress code?</p>
+            <p class="faq-a">
+              We're going for a warm Brown Palette — earthy tones, tans, caramels,
+              and creams. Please avoid white and ivory out of respect for the bride.
+              For full details and outfit inspiration,
+              <a href="#" onclick="showPage('dresscode'); return false;">see our Dress Code guide →</a>
+            </p>
+          </li>
+
+          <li class="faq-item" data-reveal="fade-up" data-delay="250">
+            <p class="faq-q">What time does the reception end?</p>
+            <p class="faq-a">
+              The reception and program are expected to wrap up by
+              <!-- SWAP: End time — update once confirmed by the couple -->
+              <strong style="color:var(--caramel);">3:00 PM</strong>.
+              We'll update this page if the schedule changes, so check back closer to the date!
+            </p>
+          </li>
+
+        </ul>
+      </div>
+    </div><!-- /.faq-collage -->
+  </div>
+
+
+  <!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+  <script>
+    const PAGES = ['home', 'details', 'dresscode', 'timeline', 'gallery', 'faq'];
+
+    function triggerHomeEntrance() {
+      // Reset sections
+      const sections = document.querySelectorAll('.home-hero, .home-venue-img, .home-std-row, .home-couple-row, .home-nav-strip');
+      sections.forEach(el => {
+        el.classList.remove('home-in');
+        void el.offsetWidth;
+      });
+      // Reset home flowers only (not faq-flower)
+      const flowers = document.querySelectorAll('#home .flower-overlay');
+      flowers.forEach(el => {
+        el.classList.remove('flower-in');
+        void el.offsetWidth;
+      });
+      requestAnimationFrame(() => {
+        sections.forEach(el => el.classList.add('home-in'));
+        flowers.forEach(el => el.classList.add('flower-in'));
+      });
+    }
+
+    let homeObserver = null;
+
+    function setupHomeScrollAnimations() {
+      // Kill previous observer if exists
+      if (homeObserver) homeObserver.disconnect();
+
+      const sections = document.querySelectorAll('#home .home-hero, #home .home-venue-img, #home .home-std-row, #home .home-couple-row, #home .home-nav-strip');
+      const flowers = document.querySelectorAll('#home .flower-overlay');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            el.classList.remove('home-in');
+            el.classList.remove('flower-in');
+            void el.offsetWidth;
+            requestAnimationFrame(() => {
+              el.classList.add(el.classList.contains('flower-overlay') ? 'flower-in' : 'home-in');
+            });
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(el => observer.observe(el));
+      flowers.forEach(el => observer.observe(el));
+      homeObserver = observer;
+    }
+
+    function showPage(name) {
+      PAGES.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.toggle('active', id === name);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (name === 'home') {
+        triggerHomeEntrance();
+        setupHomeScrollAnimations();
+      }
+      if (name === 'dresscode') {
+        requestAnimationFrame(() => {
+          initCarousel('scroll-women');
+          initCarousel('scroll-men');
+          startDresscodeAutoAdvance();
+        });
+      } else {
+        stopDresscodeAutoAdvance();
+        if (homeObserver) homeObserver.disconnect();
+      }
+      if (name === 'faq') {
+        // Trigger flower3 exactly like home flowers
+        const faqFlowers = document.querySelectorAll('#faq .flower-overlay');
+        faqFlowers.forEach(el => {
+          el.classList.remove('flower-in');
+          void el.offsetWidth;
+        });
+        requestAnimationFrame(() => {
+          faqFlowers.forEach(el => el.classList.add('flower-in'));
+        });
+      }
+    }
+
+    function openEnvelope() {
+
+      const landing = document.getElementById('landing');
+      const envelope = document.getElementById('envelope');
+      const hint = document.getElementById('env-hint');
+      const flapLayer = envelope.querySelector('.env-flap-layer');
+
+      if (envelope.classList.contains('opening')) return;
+
+      envelope.classList.add('opening');
+      landing.classList.add('opening');
+
+      if (hint) {
+        hint.classList.add('hidden');
+      }
+
+      // Halfway through the 1.5s flip (at ~750ms), drop flap behind letter + body
+      setTimeout(() => {
+        if (flapLayer) flapLayer.classList.add('flap-behind');
+      }, 750);
+
+      setTimeout(() => {
+
+        landing.style.transition =
+          'opacity 1s ease';
+
+        landing.style.opacity = '0';
+
+      }, 5500);
+
+      setTimeout(() => {
+
+        landing.style.display = 'none';
+
+        document.getElementById('home')
+          .classList.add('active');
+
+        triggerHomeEntrance();
+
+        window.scrollTo(0, 0);
+
+      }, 6500);
+    }
+    function enterSite(e) {
+      if (e) e.stopPropagation();
+      if (enterSite._called) return;
+      enterSite._called = true;
+      const landing = document.getElementById('landing');
+      landing.style.transition = 'opacity 1.8s ease, transform 1.8s cubic-bezier(0.22,1,0.36,1)';
+      landing.style.opacity = '0';
+      landing.style.transform = 'scale(0.98)';
+      landing.style.pointerEvents = 'none';
+      setTimeout(() => {
+        landing.style.display = 'none';
+        const home = document.getElementById('home');
+        if (home) {
+          home.style.opacity = '0';
+          home.style.transition = 'opacity 1s ease';
+        }
+        showPage('home');
+        triggerHomeEntrance();
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (home) home.style.opacity = '1';
+          });
+        });
+      }, 1800);
+    }
+
+    // ── DRESS CODE CAROUSELS ─────────────────────────────────────
+    let dresscodeAutoAdvanceInterval = null;
+
+    function initCarousel(id) {
+      const el = document.getElementById(id);
+      if (!el || el.dataset.carouselInit === 'true') return;
+      el.dataset.carouselInit = 'true';
+
+      const leftBtn = el.closest('.dc-carousel-wrap').querySelector('.dc-arrow-left');
+      const rightBtn = el.closest('.dc-carousel-wrap').querySelector('.dc-arrow-right');
+      const items = Array.from(el.querySelectorAll('.dc-item'));
+      const pageSize = 4;
+      const pageCount = Math.max(1, Math.ceil(items.length / pageSize));
+      const style = getComputedStyle(el);
+      const gap = parseFloat(style.gap) || parseFloat(style.columnGap) || 0;
+      const item = items[0];
+      const itemWidth = item ? item.offsetWidth : el.clientWidth;
+      const pageWidth = itemWidth * pageSize + gap * (pageSize - 1);
+
+      el.dataset.carouselPage = '0';
+      el.dataset.carouselPageCount = pageCount.toString();
+      el.dataset.carouselPageWidth = pageWidth.toString();
+
+      function updateArrows() {
+        const pageIndex = Math.min(pageCount - 1, Math.max(0, Math.round(el.scrollLeft / pageWidth)));
+        el.dataset.carouselPage = pageIndex.toString();
+        const isFirst = pageIndex === 0;
+        const isLast = pageIndex === pageCount - 1;
+        if (leftBtn) {
+          leftBtn.style.display = isFirst ? 'none' : 'flex';
+          leftBtn.style.pointerEvents = isFirst ? 'none' : 'auto';
+        }
+        if (rightBtn) {
+          rightBtn.style.display = isLast ? 'none' : 'flex';
+          rightBtn.style.pointerEvents = isLast ? 'none' : 'auto';
+        }
+      }
+
+      // Initial state
+      updateArrows();
+      el.addEventListener('scroll', updateArrows, { passive: true });
+
+      // Pause auto-advance while user interacts
+      const carouselWrap = el.closest('.dc-carousel-wrap');
+      if (carouselWrap) {
+        carouselWrap.addEventListener('mouseenter', stopDresscodeAutoAdvance);
+        carouselWrap.addEventListener('mouseleave', startDresscodeAutoAdvance);
+      }
+
+      // Drag-to-scroll
+      let isDown = false, startX, scrollLeft;
+      el.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+      });
+      el.addEventListener('mouseleave', () => { isDown = false; });
+      el.addEventListener('mouseup', () => { isDown = false; });
+      el.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - el.offsetLeft;
+        el.scrollLeft = scrollLeft - (x - startX) * 1.5;
+      });
+    }
+
+    function autoAdvanceCarousel(el) {
+      if (!el) return;
+      const pageCount = Number(el.dataset.carouselPageCount) || 1;
+      const pageWidth = Number(el.dataset.carouselPageWidth) || el.clientWidth;
+      const pageIndex = Number(el.dataset.carouselPage) || 0;
+      const nextPage = pageIndex >= pageCount - 1 ? 0 : pageIndex + 1;
+      el.dataset.carouselPage = nextPage.toString();
+      el.scrollTo({ left: nextPage * pageWidth, behavior: 'smooth' });
+    }
+
+    function startDresscodeAutoAdvance() {
+      stopDresscodeAutoAdvance();
+      dresscodeAutoAdvanceInterval = setInterval(() => {
+        autoAdvanceCarousel(document.getElementById('scroll-women'));
+        autoAdvanceCarousel(document.getElementById('scroll-men'));
+      }, 5200);
+    }
+
+    function stopDresscodeAutoAdvance() {
+      if (dresscodeAutoAdvanceInterval) {
+        clearInterval(dresscodeAutoAdvanceInterval);
+        dresscodeAutoAdvanceInterval = null;
+      }
+    }
+
+    // Init after DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initCarousel('scroll-women');
+      initCarousel('scroll-men');
+    });
+
+    function scrollCarousel(id, dir) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const pageCount = Number(el.dataset.carouselPageCount) || 1;
+      const items = Array.from(el.querySelectorAll('.dc-item'));
+      const pageSize = 4;
+
+      // Recalculate page width dynamically for accuracy
+      const style = getComputedStyle(el);
+      const gap = parseFloat(style.gap) || parseFloat(style.columnGap) || 0;
+      const item = items[0];
+      const itemWidth = item ? item.offsetWidth : el.clientWidth;
+      const pageWidth = itemWidth * pageSize + gap * (pageSize - 1);
+
+      const currentPage = Number(el.dataset.carouselPage) || 0;
+      const nextPage = Math.max(0, Math.min(currentPage + dir, pageCount - 1));
+      if (nextPage === currentPage) return;
+      el.dataset.carouselPage = nextPage.toString();
+      el.scrollTo({ left: nextPage * pageWidth, behavior: 'smooth' });
+
+      const carouselWrap = el.closest('.dc-carousel-wrap');
+      if (carouselWrap) {
+        const leftBtn = carouselWrap.querySelector('.dc-arrow-left');
+        const rightBtn = carouselWrap.querySelector('.dc-arrow-right');
+        if (leftBtn) {
+          leftBtn.style.display = nextPage === 0 ? 'none' : 'flex';
+          leftBtn.style.pointerEvents = nextPage === 0 ? 'none' : 'auto';
+        }
+        if (rightBtn) {
+          rightBtn.style.display = nextPage === pageCount - 1 ? 'none' : 'flex';
+          rightBtn.style.pointerEvents = nextPage === pageCount - 1 ? 'none' : 'auto';
+        }
+      }
+    }
+
+    // ── LIGHTBOX ─────────────────────────────────────────────────
+    let lbIndex = 0;
+    let lbItems = [];
+
+    function getGalleryItems(root = document.getElementById('gallery-grid')) {
+      if (!root) return [];
+      return Array.from(root.querySelectorAll('.g-item'));
+    }
+
+    function openLightbox(sourceOrIndex, possibleIndex) {
+      let items = [];
+
+      if (sourceOrIndex instanceof Element) {
+        const el = sourceOrIndex;
+        const carousel = el.closest('.dc-scroll');
+        if (carousel) {
+          items = Array.from(carousel.querySelectorAll('.dc-item'));
+          lbIndex = items.findIndex(item => item.contains(el));
+        } else {
+          items = getGalleryItems();
+          lbIndex = possibleIndex || 0;
+        }
+      } else {
+        items = getGalleryItems();
+        lbIndex = sourceOrIndex || 0;
+      }
+
+      if (lbIndex < 0) lbIndex = 0;
+      lbItems = items;
+      updateLightbox(lbItems);
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeLightboxOnBackdrop(e) {
+      if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+
+    function shiftLightbox(dir) {
+      if (!lbItems || lbItems.length === 0) return;
+      lbIndex = (lbIndex + dir + lbItems.length) % lbItems.length;
+      updateLightbox(lbItems);
+    }
+
+    function updateLightbox(items) {
+      const item = items[lbIndex];
+      const img = item.querySelector('img');
+      const lbImg = document.getElementById('lb-img');
+      lbImg.style.opacity = '0';
+      setTimeout(() => {
+        lbImg.src = img ? img.src : '';
+        lbImg.alt = img ? img.alt : '';
+        lbImg.style.opacity = '1';
+      }, 150);
+      document.getElementById('lb-counter').textContent =
+        (lbIndex + 1) + ' / ' + items.length;
+    }
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowLeft') shiftLightbox(-1);
+      if (e.key === 'ArrowRight') shiftLightbox(1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Swipe
+    let tsX = 0;
+    const lb = document.getElementById('lightbox');
+    lb.addEventListener('touchstart', e => { tsX = e.changedTouches[0].screenX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      const diff = tsX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 40) shiftLightbox(diff > 0 ? 1 : -1);
+    }, { passive: true });
+
+    // ══════════════════════════════════════════════════════════════
+    //  SCROLL-TRIGGERED ANIMATION SYSTEM
+    //  Uses IntersectionObserver. Replays every time element enters
+    //  viewport — scrolling up OR down.
+    // ══════════════════════════════════════════════════════════════
+    (function initReveal() {
+
+      // Graceful fallback for old browsers
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+
+      const FLOAT_IDLE = { a: 'float-idle-a', b: 'float-idle-b', c: 'float-idle-c' };
+      const idleTimers = new WeakMap();
+
+      function reveal(el) {
+        el.classList.add('is-visible');
+        if (el.dataset.reveal === 'float-flower') {
+          const cls = FLOAT_IDLE[el.dataset.floatIdle] || 'float-idle-a';
+          if (idleTimers.has(el)) clearTimeout(idleTimers.get(el));
+          const t = setTimeout(() => {
+            if (el.classList.contains('is-visible')) el.classList.add(cls);
+          }, (parseFloat(el.dataset.delay) || 0) + 1400);
+          idleTimers.set(el, t);
+        }
+      }
+
+      function hide(el) {
+        el.classList.remove('is-visible');
+        if (el.dataset.reveal === 'float-flower') {
+          const cls = FLOAT_IDLE[el.dataset.floatIdle] || 'float-idle-a';
+          el.classList.remove(cls);
+          if (idleTimers.has(el)) { clearTimeout(idleTimers.get(el)); idleTimers.delete(el); }
+        }
+      }
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => e.isIntersecting ? reveal(e.target) : hide(e.target));
+      }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+      // Observe all [data-reveal] elements — called each time a page is shown
+      function observePage(pageEl) {
+        pageEl.querySelectorAll('[data-reveal]').forEach(el => {
+          // Unobserve + re-observe so IO re-evaluates intersection fresh
+          io.unobserve(el);
+          // Reset to hidden state so animation can replay
+          el.classList.remove('is-visible');
+          // Remove any idle float classes
+          Object.values(FLOAT_IDLE).forEach(c => el.classList.remove(c));
+          io.observe(el);
+        });
+      }
+
+      // Initial observe on page load (for landing page elements if any)
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+      });
+
+      // ── Patch showPage to reset + re-observe on every page switch ──
+      // showPage is a hoisted function declaration so it exists on window
+      const _orig = showPage;
+      window.showPage = function(name) {
+        _orig(name);
+        // Double RAF: first frame makes page display:block, second frame IO fires
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          const pg = document.getElementById(name);
+          if (pg) observePage(pg);
+        }));
+      };
+
+    })();
+  </script>
+
+  <!-- ============================================================
+     MUSIC PLAYER — fixed, floats on all pages
+     SWAP: Replace the src in <audio> with your actual music file.
+     Supported formats: .mp3 (recommended), .ogg, .wav
+     How to add your song:
+       1. Save your music file in the same folder as this HTML file
+       2. Replace "your-song.mp3" below with the exact filename
+       e.g. <source src="perfect-ed-sheeran.mp3" type="audio/mpeg">
+     The music persists as guests navigate between sections.
+============================================================ -->
+  <!-- ============================================================
+     MUSIC PLAYER — fixed, floats on all pages
+     SWAP: Replace the src in <audio> with your actual music file.
+     Supported formats: .mp3 (recommended), .ogg, .wav
+     How to add your song:
+       1. Save your music file in the same folder as this HTML file
+       2. Replace "your-song.mp3" below with the exact filename
+          e.g. <source src="now-and-forever.mp3" type="audio/mpeg">
+     The music will try to play automatically when the site opens.
+     If the browser blocks autoplay (most do until the user interacts),
+     it will start playing as soon as the guest first taps the envelope.
+============================================================ -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-pill">
+      <div class="music-pill-text">
+        <p class="music-hint" id="musicHint">Now and Forever — Richard Marx ♪</p>
+        <div class="music-label" id="musicLabel">♪ Now and Forever — Richard Marx</div>
+      </div>
+      <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Play or pause music">
+        <div class="vinyl" id="vinyl"></div>
+        <span class="music-icon" id="musicIcon">▶</span>
+      </button>
+    </div>
+  </div>
+
+  <audio id="weddingAudio" loop preload="auto" autoplay>
+    <!-- SWAP: Replace "your-song.mp3" with your actual audio filename -->
+    <source src="nowandforever.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // ── MUSIC PLAYER ─────────────────────────────────────────────
+    const audio = document.getElementById('weddingAudio');
+    const player = document.getElementById('musicPlayer');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicLabel = document.getElementById('musicLabel');
+    const musicHint = document.getElementById('musicHint');
+    let isPlaying = false;
+
+    // Called whenever music successfully starts playing
+    function onMusicPlaying() {
+      isPlaying = true;
+      player.classList.add('playing');
+      musicIcon.textContent = '⏸';
+      // Remove "first interaction" listener once music is running
+      document.removeEventListener('click', autoplayOnGesture);
+      document.removeEventListener('touchstart', autoplayOnGesture);
+    }
+
+    // Attempt autoplay immediately on page load.
+    window.addEventListener('load', () => {
+      audio.play()
+        .then(onMusicPlaying)
+        .catch(() => {
+          // Browser blocked autoplay — will retry on first user interaction
+        });
+    });
+
+    // Fallback: start music on the very first interaction if autoplay was blocked
+    function autoplayOnGesture() {
+      if (!isPlaying) {
+        audio.play().then(onMusicPlaying).catch(() => { });
+      }
+    }
+    document.addEventListener('click', autoplayOnGesture, { once: false });
+    document.addEventListener('touchstart', autoplayOnGesture, { once: false, passive: true });
+
+    // Manual toggle for the vinyl button
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        player.classList.remove('playing');
+        musicIcon.textContent = '▶';
+      } else {
+        audio.play()
+          .then(onMusicPlaying)
+          .catch(() => {
+            musicLabel.textContent = 'Tap again to play ♪';
+            player.classList.add('playing');
+            setTimeout(() => {
+              musicLabel.textContent = '♪ Now and Forever — Richard Marx';
+              player.classList.remove('playing');
+            }, 2000);
+          });
+      }
+    }
+
+    // Keep icon in sync if audio ends unexpectedly (shouldn't with loop)
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
+      player.classList.remove('playing');
+      musicIcon.textContent = '▶';
+    });
+  </script>

@@ -570,6 +570,7 @@
 
     #home.active {
       display: block;
+      overflow-x: clip;
     }
 
     /* ── NEW EDITORIAL HOME LAYOUT ── */
@@ -2265,6 +2266,8 @@
       transition: box-shadow 0.3s, transform 0.2s;
       position: relative;
       overflow: hidden;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .music-btn:hover {
@@ -2304,17 +2307,12 @@
 
     .music-icon {
       position: absolute;
-      color: #fff5e8;
-      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 1;
-      opacity: 0.7;
-      transition: opacity 0.3s;
       z-index: 2;
       pointer-events: none;
-    }
-
-    .music-btn:hover .music-icon {
-      opacity: 1;
     }
 
     .music-btn::before {
@@ -2625,23 +2623,34 @@
         width: 100%;
       }
 
-      /* ── Flower overlays: smaller and repositioned for mobile, never clipped ── */
+      /* ── Flower 1 (rose stem): between venue photo and Save the Date card ── */
       .flower-grass {
-        width: 100px;
-        top: 100px;
-        left: -30px;
-      }
-
-      .flower-bouquet {
-        width: 140px;
-        top: 340px;
-        right: -40px;
-      }
-
-      .flower-rose {
         width: 90px;
-        top: 520px;
-        left: -25px;
+        top: 155px;
+        left: -18px;
+        right: auto;
+        transform: rotate(-12deg);
+        transform-origin: bottom center;
+      }
+
+      /* ── Flower 2 (bouquet): between couple/Wedding Of and FAQs/nav strip ── */
+      .flower-bouquet {
+        width: 130px;
+        top: 530px;
+        right: -28px;
+        left: auto;
+        transform: rotate(8deg);
+        transform-origin: bottom center;
+      }
+
+      /* ── Flower 3 (grass reeds): beside the Prenuptial nav button ── */
+      .flower-rose {
+        width: 85px;
+        top: 620px;
+        left: -20px;
+        right: auto;
+        transform: rotate(-8deg);
+        transform-origin: bottom center;
       }
 
       /* ── Section inner pages: more horizontal padding ── */
@@ -2702,20 +2711,20 @@
         transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      /* ── Home STD row: prevent overflow ── */
+      /* ── Home sections: uniform symmetric horizontal padding ── */
       .home-std-row {
         margin-top: -30px;
-        padding: 0 0.5rem;
+        padding: 0 0.6rem;
       }
 
-      /* ── Couple row: tighten padding ── */
+      /* ── Couple row: same padding ── */
       .home-couple-row {
-        padding: 0 0.3rem;
+        padding: 0 0.6rem;
       }
 
-      /* ── Nav strip: adjust ── */
+      /* ── Nav strip: same padding ── */
       .home-nav-strip {
-        padding: 0 0.1rem;
+        padding: 0 0.6rem;
       }
     }
 
@@ -3909,7 +3918,12 @@
       </div>
       <button class="music-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Play or pause music">
         <div class="vinyl" id="vinyl"></div>
-        <span class="music-icon" id="musicIcon">▶</span>
+        <span class="music-icon" id="musicIcon">
+          <!-- Play icon (default) -->
+          <svg id="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="#fff5e8" style="display:block;opacity:0.85;"><path d="M8 5v14l11-7z"/></svg>
+          <!-- Pause icon (hidden by default) -->
+          <svg id="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="#fff5e8" style="display:none;opacity:0.85;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </span>
       </button>
     </div>
   </div>
@@ -3923,16 +3937,27 @@
     // ── MUSIC PLAYER ─────────────────────────────────────────────
     const audio = document.getElementById('weddingAudio');
     const player = document.getElementById('musicPlayer');
-    const musicIcon = document.getElementById('musicIcon');
     const musicLabel = document.getElementById('musicLabel');
     const musicHint = document.getElementById('musicHint');
+    const iconPlay  = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
     let isPlaying = false;
+
+    function setPlayIcon() {
+      iconPlay.style.display  = 'block';
+      iconPause.style.display = 'none';
+    }
+
+    function setPauseIcon() {
+      iconPlay.style.display  = 'none';
+      iconPause.style.display = 'block';
+    }
 
     // Called whenever music successfully starts playing
     function onMusicPlaying() {
       isPlaying = true;
       player.classList.add('playing');
-      musicIcon.textContent = '⏸';
+      setPauseIcon();
       // Remove "first interaction" listener once music is running
       document.removeEventListener('click', autoplayOnGesture);
       document.removeEventListener('touchstart', autoplayOnGesture);
@@ -3962,7 +3987,7 @@
         audio.pause();
         isPlaying = false;
         player.classList.remove('playing');
-        musicIcon.textContent = '▶';
+        setPlayIcon();
       } else {
         audio.play()
           .then(onMusicPlaying)
@@ -3981,6 +4006,6 @@
     audio.addEventListener('ended', () => {
       isPlaying = false;
       player.classList.remove('playing');
-      musicIcon.textContent = '▶';
+      setPlayIcon();
     });
   </script>

@@ -108,10 +108,7 @@
       border-bottom: 1px solid rgba(212, 184, 150, 0.35);
       padding: 0.75rem 1.5rem;
       margin: 0 -1.5rem 2rem;
-      /* Use left/right instead of width to avoid horizontal overflow */
-      width: auto;
-      left: 0;
-      right: 0;
+      width: calc(100% + 3rem);
     }
 
     #faq .back-btn-bar {
@@ -935,7 +932,8 @@
       display: flex;
       align-items: flex-start;
       gap: 0.9rem;
-      margin-top: 1rem;
+      margin-top: 1.6rem;
+      margin-bottom: 1.6rem;
       padding: 0 0.5rem;
     }
 
@@ -1618,44 +1616,52 @@
       border-bottom: 1px solid var(--tan);
     }
 
+    /* ── COVERFLOW CAROUSEL ── */
+
+    /* Outer wrapper clips side peeks */
+    .dc-carousel-wrap {
+      position: relative;
+      overflow: hidden;
+      padding: 0.5rem 0 0;
+    }
+
+    /* Track — JS sets translateX to centre the active card */
     .dc-scroll {
       display: flex;
+      align-items: flex-start;
       gap: 0.8rem;
-      overflow-x: auto;
-      padding-bottom: 1rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      cursor: grab;
-      scroll-behavior: smooth;
+      overflow: visible;
+      touch-action: pan-y;
+      user-select: none;
+      will-change: transform;
+      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .dc-scroll:active {
-      cursor: grabbing;
-    }
-
-    .dc-item {
-      transition: transform 0.35s ease, opacity 0.35s ease;
-    }
-
-    .dc-scroll::-webkit-scrollbar {
-      height: 3px;
-    }
-
-    .dc-scroll::-webkit-scrollbar-track {
-      background: var(--parchment);
-    }
-
-    .dc-scroll::-webkit-scrollbar-thumb {
-      background: var(--tan);
-      border-radius: 2px;
-    }
-
+    /* Each card — original fixed size */
     .dc-item {
       flex: 0 0 160px;
-      scroll-snap-align: start;
+      width: 160px;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      transition: opacity 0.42s ease, filter 0.42s ease, transform 0.42s cubic-bezier(0.22,1,0.36,1);
+      opacity: 0.35;
+      filter: blur(2px);
+      transform: scale(0.92);
+      cursor: pointer;
+    }
+
+    .dc-item.dc-active {
+      opacity: 1;
+      filter: none;
+      transform: scale(1);
+      cursor: default;
+    }
+
+    /* Cards beyond prev/next neighbour are invisible */
+    .dc-item.dc-hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .dc-photo {
@@ -1670,6 +1676,7 @@
       width: 160px;
       height: 220px;
       flex-shrink: 0;
+      background: var(--parchment);
     }
 
     .dc-caption {
@@ -1680,49 +1687,67 @@
       text-align: center;
     }
 
-    .dc-carousel-wrap {
-      position: relative;
+    /* Nav row: [ghost|prev] · dots · [next|ghost] */
+    .dc-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      margin-top: 1rem;
     }
 
     .dc-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-60%);
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: var(--linen);
       border: 1px solid var(--tan);
       color: var(--brown-mid);
-      font-size: 1.1rem;
+      font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 10;
-      box-shadow: 0 3px 14px rgba(59, 42, 26, 0.16);
-      transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, opacity 0.35s ease, transform 0.22s ease;
-      user-select: none;
-      opacity: 1;
+      box-shadow: 0 2px 10px rgba(59,42,26,0.12);
+      transition: background 0.22s, color 0.22s, transform 0.18s;
+      flex-shrink: 0;
     }
 
     .dc-arrow:hover {
       background: var(--brown-mid);
       color: #fff;
-      box-shadow: 0 6px 20px rgba(59, 42, 26, 0.26);
-      transform: translateY(-60%) scale(1.08);
+      transform: scale(1.08);
     }
 
-    .dc-arrow:active {
-      transform: translateY(-60%) scale(0.95);
+    .dc-arrow:active { transform: scale(0.93); }
+
+    /* Ghost keeps nav width stable when one arrow is hidden */
+    .dc-arrow-ghost {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
-    .dc-arrow-left {
-      left: -16px;
+    .dc-dots {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
     }
 
-    .dc-arrow-right {
-      right: -16px;
+    .dc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--tan);
+      transition: background 0.3s, transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .dc-dot.dc-dot-active {
+      background: var(--brown-mid);
+      transform: scale(1.35);
     }
 
     .scroll-hint {
@@ -2156,6 +2181,7 @@
       text-transform: uppercase;
       color: var(--muted);
       border-top: 1px solid var(--tan);
+      margin-top: 1.5rem;
     }
 
     .music-player {
@@ -2327,8 +2353,9 @@
       }
 
       .back-btn-bar {
-        padding: 0.6rem 1.2rem;
-        margin: 0 -1.2rem 1.5rem;
+        padding: 0.6rem 1rem;
+        margin: 0 -1rem 1.5rem;
+        width: calc(100% + 2rem);
       }
 
       .section-wrap {
@@ -2544,332 +2571,29 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       SCROLL-TRIGGERED ANIMATION SYSTEM
-       Elegant · Soft Luxury · Romantic · Minimalist Wedding
+       INNER PAGE — "rising from below" entrance animation
+       All elements share one direction (up) so the page feels like
+       it's assembling itself as you arrive — mirrors the home feel.
     ══════════════════════════════════════════════════════════════ */
 
-    /* ── Base "pre-animation" states — all invisible until IO fires ── */
-    [data-reveal] {
+    .page-el {
+      opacity: 0;
+      transform: translateY(36px);
       will-change: transform, opacity;
     }
 
-    /* FADE UP */
-    [data-reveal="fade-up"] {
-      opacity: 0;
-      transform: translateY(32px);
-      transition:
-        opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Added by JS when element enters viewport; removed on leave */
+    .page-el.page-el-in {
+      animation: pageElRise var(--page-el-dur, 0.80s)
+                 cubic-bezier(0.22, 1, 0.36, 1)
+                 var(--page-el-delay, 0s)
+                 forwards;
     }
 
-    /* FADE LEFT (slides in from right) */
-    [data-reveal="fade-left"] {
-      opacity: 0;
-      transform: translateX(40px);
-      transition:
-        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* FADE RIGHT (slides in from left) */
-    [data-reveal="fade-right"] {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition:
-        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* ZOOM IN */
-    [data-reveal="zoom-in"] {
-      opacity: 0;
-      transform: scale(0.92);
-      transition:
-        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* ZOOM IN SOFT — subtler, for text elements */
-    [data-reveal="zoom-soft"] {
-      opacity: 0;
-      transform: scale(0.97) translateY(12px);
-      transition:
-        opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* FLOAT FLOWER — gentle sway-up for decorative botanicals */
-    [data-reveal="float-flower"] {
-      opacity: 0;
-      transform: translateY(28px) rotate(-3deg) scale(0.94);
-      transition:
-        opacity 1.3s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1.3s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* STAGGER DELAYS — apply alongside data-reveal */
-    [data-delay="100"] { transition-delay: 0.1s; }
-    [data-delay="150"] { transition-delay: 0.15s; }
-    [data-delay="200"] { transition-delay: 0.2s; }
-    [data-delay="250"] { transition-delay: 0.25s; }
-    [data-delay="300"] { transition-delay: 0.3s; }
-    [data-delay="350"] { transition-delay: 0.35s; }
-    [data-delay="400"] { transition-delay: 0.4s; }
-    [data-delay="500"] { transition-delay: 0.5s; }
-    [data-delay="600"] { transition-delay: 0.6s; }
-    [data-delay="700"] { transition-delay: 0.7s; }
-    [data-delay="800"] { transition-delay: 0.8s; }
-
-    /* ── REVEALED STATE — added/removed by IntersectionObserver ── */
-    [data-reveal].is-visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Special override for float-flower visible state — keeps a gentle tilt */
-    [data-reveal="float-flower"].is-visible {
-      opacity: 1;
-      transform: translateY(0) rotate(0deg) scale(1);
-    }
-
-    /* ── FLOATING FLOWER IDLE ANIMATION (after reveal) ── */
-    @keyframes floatIdleA {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      30%       { transform: translateY(-6px) rotate(1.5deg); }
-      70%       { transform: translateY(-3px) rotate(-1deg); }
-    }
-    @keyframes floatIdleB {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      40%       { transform: translateY(-8px) rotate(-1.5deg); }
-      80%       { transform: translateY(-4px) rotate(1deg); }
-    }
-    @keyframes floatIdleC {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      25%       { transform: translateY(-5px) rotate(2deg); }
-      65%       { transform: translateY(-9px) rotate(-1deg); }
-    }
-
-    /* Applied after reveal completes (JS adds .float-idle-a/b/c class) */
-    .float-idle-a { animation: floatIdleA 5s ease-in-out infinite; }
-    .float-idle-b { animation: floatIdleB 6.5s ease-in-out infinite; }
-    .float-idle-c { animation: floatIdleC 7.5s ease-in-out infinite; }
-
-    /* Pause idle float when element leaves viewport (handled by JS removing class) */
-
-    /* ── TIMELINE ITEM REVEAL — stagger each row ── */
-    .tl-item[data-reveal] {
-      transition-duration: 0.7s;
-    }
-
-    /* ── GALLERY ROW REVEAL ── */
-    .ge-row[data-reveal] {
-      transition-duration: 0.75s;
-    }
-
-    /* ── FAQ ITEM REVEAL ── */
-    .faq-item[data-reveal] {
-      transition-duration: 0.65s;
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       MOBILE RESPONSIVENESS IMPROVEMENTS
-    ══════════════════════════════════════════════════════════════ */
-
-    /* Prevent horizontal overflow without creating new scroll contexts */
-    html, body {
-      overflow-x: hidden;
-      width: 100%;
-    }
-
-    /* Global safe horizontal padding for mobile */
-    @media (max-width: 600px) {
-
-      /* ── Section wrap mobile spacing ── */
-      .section-wrap {
-        padding: 0 1.2rem 3rem;
-      }
-
-      /* ── Home collage: tighter but still breathing ── */
-      .home-collage {
-        padding: 2rem 1rem 0;
-      }
-
-      /* ── Venue label overlap on small screens ── */
-      .home-std-row {
-        padding: 0 0.7rem;
-      }
-
-      /* ── Couple row padding ── */
-      .home-couple-row {
-        padding: 0 0.5rem;
-      }
-
-      /* ── Nav strip fits screen ── */
-      .home-nav-strip {
-        padding: 0 0.5rem;
-      }
-
-      /* ── Polaroid: let it breathe but not overflow ── */
-      .home-polaroid {
-        flex: 0 0 44%;
-      }
-
-      /* ── Names don't overflow ── */
-      .home-couple-names {
-        font-size: clamp(1.45rem, 5vw, 2rem);
-        word-break: break-word;
-      }
-
-      /* ── Home hero inner padding ── */
-      .home-hero {
-        padding: 1.5rem 1.2rem 1.3rem;
-      }
-
-      /* ── Info list on mobile ── */
-      .info-row {
-        flex-direction: column;
-        gap: 0.25rem;
-      }
-
-      .info-key {
-        min-width: unset;
-      }
-
-      /* ── Venue photos grid ── */
-      .venue-photos {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.4rem;
-      }
-
-      /* ── Timeline: tighter grid ── */
-      .tl-item {
-        grid-template-columns: 58px 22px 1fr;
-      }
-
-      /* ── Gallery editorial padding ── */
-      .gallery-editorial {
-        padding: 0 0.85rem 2rem;
-        gap: 0.4rem;
-      }
-
-      /* ── Gallery rows: allow stacking on very small screens ── */
-      .ge-row-3 {
-        flex-wrap: wrap;
-      }
-
-      .ge-row-3 .g-item {
-        min-width: calc(33.333% - 0.27rem);
-        flex: 1 1 calc(33.333% - 0.27rem);
-      }
-
-      /* ── FAQ section ── */
-      .faq-collage .section-wrap {
-        padding: 0 1.1rem 3rem;
-      }
-
-      /* ── Back btn bar ── */
-      .back-btn-bar {
-        margin: 0 -1.2rem 1.8rem;
-        padding: 0.7rem 1.2rem;
-      }
-
-      /* ── Dress code intro text ── */
-      .dc-intro {
-        font-size: 0.87rem;
-      }
-
-      /* ── Palette row ── */
-      .palette-row {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      /* ── Map card ── */
-      .map-card {
-        padding: 1.1rem 1rem;
-        gap: 0.9rem;
-      }
-
-      /* ── Music player: smaller pill on mobile ── */
-      .music-player {
-        bottom: 0.9rem;
-        right: 0.75rem;
-      }
-
-      /* ── Footer ── */
-      footer {
-        padding: 2rem 1.1rem;
-      }
-    }
-
-    /* ── Very small phones (SE, Moto G) ── */
-    @media (max-width: 375px) {
-      .home-collage {
-        padding: 1.6rem 0.8rem 0;
-      }
-
-      .home-hero {
-        padding: 1.3rem 1rem 1.1rem;
-      }
-
-      .home-std-row {
-        padding: 0 0.5rem;
-      }
-
-      .home-couple-row {
-        padding: 0 0.4rem;
-      }
-
-      .home-polaroid {
-        flex: 0 0 42%;
-      }
-
-      .home-venue-btn {
-        flex: 0 0 80px;
-        padding: 0.85rem 0.4rem;
-      }
-
-      .home-nav-strip {
-        gap: 0.4rem;
-        padding: 0 0.4rem;
-      }
-
-      .home-nav-tall {
-        flex: 0 0 38%;
-        padding: 1.5rem 0.6rem;
-      }
-
-      .tl-item {
-        grid-template-columns: 52px 20px 1fr;
-      }
-
-      .tl-time {
-        font-size: 0.68rem;
-        padding-right: 0.6rem;
-      }
-
-      .section-wrap {
-        padding: 0 1rem 2.5rem;
-      }
-
-      .back-btn-bar {
-        margin: 0 -1rem 1.6rem;
-        padding: 0.65rem 1rem;
-      }
-    }
-
-    /* Reduce motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-      [data-reveal] {
-        transition: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-      .float-idle-a,
-      .float-idle-b,
-      .float-idle-c {
-        animation: none !important;
-      }
+    @keyframes pageElRise {
+      0%   { opacity: 0; transform: translateY(36px); }
+      58%  { opacity: 1; }
+      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -3120,18 +2844,18 @@
     <div class="section-wrap">
       <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
 
-      <p class="sec-eyebrow" data-reveal="fade-up">Venue Information</p>
-      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Details</h2>
-      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+      <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">Venue Information</p>
+      <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Details</h2>
+      <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
 
       <!-- CEREMONY -->
-      <div class="venue-block" data-reveal="fade-up" data-delay="150">
+      <div class="venue-block page-el" style="--page-el-delay:0.28s">
         <p class="venue-label">Ceremony</p>
 
         <h3 class="venue-name">San Vicente Ferrer Quasi Parish</h3>
 
         <!-- Venue photos -->
-        <div class="venue-photos" data-reveal="zoom-in" data-delay="200">
+        <div class="venue-photos">
           <!--
           SWAP: Replace these placeholders with actual venue photos.
           Tip: Use src="ceremony-exterior.jpg" etc.
@@ -3154,7 +2878,7 @@
         <!-- Map card — themed to match the invitation; tapping opens Google Maps.
            SWAP: Update href with the correct Google Maps link for the ceremony venue.
            Google Maps iframe embeds cannot be recolored, so we use this card instead. -->
-        <a class="map-card" data-reveal="fade-up" data-delay="250" href="https://maps.google.com/?q=San+Vicente+Ferrer+Quasi+Parish+Monkayo+Davao+de+Oro"
+        <a class="map-card page-el" style="--page-el-delay:0.36s" href="https://maps.google.com/?q=San+Vicente+Ferrer+Quasi+Parish+Monkayo+Davao+de+Oro"
           target="_blank" rel="noopener" aria-label="Open ceremony venue in Google Maps">
           <div class="map-card-pin">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -3172,10 +2896,10 @@
         </a>
       </div>
 
-      <hr class="divider">
+      <hr class="divider page-el" style="--page-el-delay:0.10s">
 
       <!-- RECEPTION -->
-      <div class="venue-block" data-reveal="fade-up" data-delay="100">
+      <div class="venue-block page-el" style="--page-el-delay:0.18s">
         <p class="venue-label">Reception</p>
 
         <h3 class="venue-name">Basañes Garden Resto and Events</h3>
@@ -3202,7 +2926,7 @@
 
         <!-- Map card — themed to match the invitation; tapping opens Google Maps.
            SWAP: Update href with the correct Google Maps link for the reception venue. -->
-        <a class="map-card" data-reveal="fade-up" data-delay="200" href="https://maps.google.com/?q=Basanes+Garden+Resto+Events+Monkayo+Davao+de+Oro"
+        <a class="map-card page-el" style="--page-el-delay:0.26s" href="https://maps.google.com/?q=Basanes+Garden+Resto+Events+Monkayo+Davao+de+Oro"
           target="_blank" rel="noopener" aria-label="Open reception venue in Google Maps">
           <div class="map-card-pin">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -3231,15 +2955,15 @@
     <div class="section-wrap">
       <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
 
-      <p class="sec-eyebrow" data-reveal="fade-up">What to Wear</p>
-      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Dress Code</h2>
-      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+      <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">What to Wear</p>
+      <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Dress Code</h2>
+      <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
 
       <!-- SWAP: Dress code label -->
-      <div class="dc-theme-badge" data-reveal="zoom-soft" data-delay="150">Brown Palette · Semi Formal</div>
+      <div class="dc-theme-badge page-el" style="--page-el-delay:0.28s">Brown Palette · Semi Formal</div>
 
       <!-- SWAP: Attire description message to guests -->
-      <p class="dc-intro" data-reveal="fade-up" data-delay="200">
+      <p class="dc-intro page-el" style="--page-el-delay:0.36s">
         We kindly invite you to dress in warm, earthy tones that complement
         our celebration. Think browns, tans, caramels, creams, and soft nudes.
         Please avoid white, off-white, and ivory out of respect for the bride.
@@ -3247,7 +2971,7 @@
       </p>
 
       <!-- Color Palette Swatches -->
-      <div class="palette-row" data-reveal="fade-up" data-delay="100">
+      <div class="palette-row page-el" style="--page-el-delay:0.44s">
         <!-- SWAP: Replace hex values with the couple's preferred attire colors -->
         <div class="swatch" style="background:#3b2a1a;" title="Deep Brown"></div>
         <div class="swatch" style="background:#7a5230;" title="Warm Brown"></div>
@@ -3260,121 +2984,112 @@
       </div>
 
       <!-- ── WOMEN'S ATTIRE ── -->
-      <div class="dc-gender-block" data-reveal="fade-up" data-delay="100">
+      <div class="dc-gender-block page-el" style="--page-el-delay:0.10s">
         <h3 class="dc-gender-title">For the Ladies</h3>
-        <p class="scroll-hint">Scroll to see more</p>
-        <div class="dc-carousel-wrap">
-          <button class="dc-arrow dc-arrow-left" onclick="scrollCarousel('scroll-women',-1)"
-            aria-label="Previous">&#8592;</button>
+        <div class="dc-carousel-wrap" id="wrap-women">
           <div class="dc-scroll" id="scroll-women">
-
-            <!-- SWAP: Replace each placeholder with an actual attire reference photo
-             src="women-look-1.jpg" etc.
-             DESIGN NOTE: Flat lays, editorial shots, or Pinterest-style outfit photos
-             work best. Aim for consistent lighting and style across all 8 photos. -->
-
             <!-- Look 1 -->
-            <div class="dc-item">
-              <img src="dress_code/F1.jpg" alt="Women Look 1" class="dc-photo" onclick="openLightbox(this, 0)" />
+            <div class="dc-item dc-active">
+              <img src="dress_code/F1.jpg" alt="Women Look 1" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 1</span>
             </div>
             <!-- Look 2 -->
             <div class="dc-item">
-              <img src="dress_code/F2.jpg" alt="Women Look 2" class="dc-photo" onclick="openLightbox(this, 1)" />
+              <img src="dress_code/F2.jpg" alt="Women Look 2" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 2</span>
             </div>
             <!-- Look 3 -->
             <div class="dc-item">
-              <img src="dress_code/F3.jpg" alt="Women Look 3" class="dc-photo" onclick="openLightbox(this, 2)" />
+              <img src="dress_code/F3.jpg" alt="Women Look 3" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 3</span>
             </div>
             <!-- Look 4 -->
             <div class="dc-item">
-              <img src="dress_code/F4.jpg" alt="Women Look 4" class="dc-photo" onclick="openLightbox(this, 3)" />
+              <img src="dress_code/F4.jpg" alt="Women Look 4" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 4</span>
             </div>
             <!-- Look 5 -->
             <div class="dc-item">
-              <img src="dress_code/F5.jpg" alt="Women Look 5" class="dc-photo" onclick="openLightbox(this, 4)" />
+              <img src="dress_code/F5.jpg" alt="Women Look 5" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 5</span>
             </div>
             <!-- Look 6 -->
             <div class="dc-item">
-              <img src="dress_code/F6.jpg" alt="Women Look 6" class="dc-photo" onclick="openLightbox(this, 5)" />
+              <img src="dress_code/F6.jpg" alt="Women Look 6" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 6</span>
             </div>
             <!-- Look 7 -->
             <div class="dc-item">
-              <img src="dress_code/F7.jpg" alt="Women Look 7" class="dc-photo" onclick="openLightbox(this, 6)" />
+              <img src="dress_code/F7.jpg" alt="Women Look 7" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 7</span>
             </div>
             <!-- Look 8 -->
             <div class="dc-item">
-              <img src="dress_code/F8.jpg" alt="Women Look 8" class="dc-photo" onclick="openLightbox(this, 7)" />
+              <img src="dress_code/F8.jpg" alt="Women Look 8" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 8</span>
             </div>
           </div>
-          <button class="dc-arrow dc-arrow-right" onclick="scrollCarousel('scroll-women',1)"
-            aria-label="Next">&#8594;</button>
+          <!-- nav row -->
+          <div class="dc-nav" id="nav-women">
+            <span id="btn-women-prev-wrap"><button class="dc-arrow" id="btn-women-prev" onclick="peekGo('scroll-women',-1)" aria-label="Previous">&#8592;</button></span>
+            <div class="dc-dots" id="dots-women"></div>
+            <span id="btn-women-next-wrap"><button class="dc-arrow" id="btn-women-next" onclick="peekGo('scroll-women',1)" aria-label="Next">&#8594;</button></span>
+          </div>
         </div><!-- /.dc-carousel-wrap -->
       </div>
 
       <!-- ── MEN'S ATTIRE ── -->
-      <div class="dc-gender-block" data-reveal="fade-up" data-delay="150">
+      <div class="dc-gender-block page-el" style="--page-el-delay:0.18s">
         <h3 class="dc-gender-title">For the Gentlemen</h3>
-        <p class="scroll-hint">Scroll to see more</p>
-        <div class="dc-carousel-wrap">
-          <button class="dc-arrow dc-arrow-left" onclick="scrollCarousel('scroll-men',-1)"
-            aria-label="Previous">&#8592;</button>
+        <div class="dc-carousel-wrap" id="wrap-men">
           <div class="dc-scroll" id="scroll-men">
-
-            <!-- SWAP: Replace each placeholder with actual men's attire reference photos
-             DESIGN NOTE: Outfit flat lays or styled lookbook photos work best.
-             Use consistent background color/style across the 8 images. -->
-
             <!-- Look 1 -->
-            <div class="dc-item">
-              <img src="dress_code/M1.jpg" alt="Men Look 1" class="dc-photo" onclick="openLightbox(this, 0)" />
+            <div class="dc-item dc-active">
+              <img src="dress_code/M1.jpg" alt="Men Look 1" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 1</span>
             </div>
             <!-- Look 2 -->
             <div class="dc-item">
-              <img src="dress_code/M2.jpg" alt="Men Look 2" class="dc-photo" onclick="openLightbox(this, 1)" />
+              <img src="dress_code/M2.jpg" alt="Men Look 2" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 2</span>
             </div>
             <!-- Look 3 -->
             <div class="dc-item">
-              <img src="dress_code/M3.jpg" alt="Men Look 3" class="dc-photo" onclick="openLightbox(this, 2)" />
+              <img src="dress_code/M3.jpg" alt="Men Look 3" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 3</span>
             </div>
             <!-- Look 4 -->
             <div class="dc-item">
-              <img src="dress_code/M4.jpg" alt="Men Look 4" class="dc-photo" onclick="openLightbox(this, 3)" />
+              <img src="dress_code/M4.jpg" alt="Men Look 4" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 4</span>
             </div>
             <!-- Look 5 -->
             <div class="dc-item">
-              <img src="dress_code/M5.jpg" alt="Men Look 5" class="dc-photo" onclick="openLightbox(this, 4)" />
+              <img src="dress_code/M5.jpg" alt="Men Look 5" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 5</span>
             </div>
             <!-- Look 6 -->
             <div class="dc-item">
-              <img src="dress_code/M6.jpg" alt="Men Look 6" class="dc-photo" onclick="openLightbox(this, 5)" />
+              <img src="dress_code/M6.jpg" alt="Men Look 6" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 6</span>
             </div>
             <!-- Look 7 -->
             <div class="dc-item">
-              <img src="dress_code/M7.jpg" alt="Men Look 7" class="dc-photo" onclick="openLightbox(this, 6)" />
+              <img src="dress_code/M7.jpg" alt="Men Look 7" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 7</span>
             </div>
             <!-- Look 8 -->
             <div class="dc-item">
-              <img src="dress_code/M8.jpg" alt="Men Look 8" class="dc-photo" onclick="openLightbox(this, 7)" />
+              <img src="dress_code/M8.jpg" alt="Men Look 8" class="dc-photo" onclick="openLightbox(this)" />
               <span class="dc-caption">Look 8</span>
             </div>
           </div>
-          <button class="dc-arrow dc-arrow-right" onclick="scrollCarousel('scroll-men',1)"
-            aria-label="Next">&#8594;</button>
+          <!-- nav row -->
+          <div class="dc-nav" id="nav-men">
+            <span id="btn-men-prev-wrap"><button class="dc-arrow" id="btn-men-prev" onclick="peekGo('scroll-men',-1)" aria-label="Previous">&#8592;</button></span>
+            <div class="dc-dots" id="dots-men"></div>
+            <span id="btn-men-next-wrap"><button class="dc-arrow" id="btn-men-next" onclick="peekGo('scroll-men',1)" aria-label="Next">&#8594;</button></span>
+          </div>
         </div><!-- /.dc-carousel-wrap -->
       </div>
 
@@ -3389,15 +3104,15 @@
     <div class="section-wrap">
       <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
 
-      <p class="sec-eyebrow" data-reveal="fade-up">The Day's Schedule</p>
-      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Timeline</h2>
-      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+      <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">The Day's Schedule</p>
+      <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Timeline</h2>
+      <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
 
-      <div class="tl-date-badge" data-reveal="zoom-soft" data-delay="200">Friday · August 14, 2026</div>
+      <div class="tl-date-badge page-el" style="--page-el-delay:0.28s">Friday · August 14, 2026</div>
 
       <ul class="tl-list">
 
-        <li class="tl-item" data-reveal="fade-right" data-delay="100">
+        <li class="tl-item page-el" style="--page-el-delay:0.36s">
           <span class="tl-time">9:00 AM</span>
           <div class="tl-axis">
             <div class="tl-dot"></div>
@@ -3412,7 +3127,7 @@
           </div>
         </li>
 
-        <li class="tl-item" data-reveal="fade-right" data-delay="200">
+        <li class="tl-item page-el" style="--page-el-delay:0.44s">
           <span class="tl-time">10:30 AM</span>
           <div class="tl-axis">
             <div class="tl-dot"></div>
@@ -3427,7 +3142,7 @@
           </div>
         </li>
 
-        <li class="tl-item" data-reveal="fade-right" data-delay="300">
+        <li class="tl-item page-el" style="--page-el-delay:0.52s">
           <span class="tl-time">11:00 AM</span>
           <div class="tl-axis">
             <div class="tl-dot"></div>
@@ -3452,9 +3167,9 @@
   <div id="gallery" class="page">
     <div class="section-wrap" style="padding-bottom:1rem;">
       <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
-      <p class="sec-eyebrow" data-reveal="fade-up">A Glimpse of Forever</p>
-      <h2 class="sec-title" data-reveal="fade-up" data-delay="100">Our Photos</h2>
-      <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+      <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">A Glimpse of Forever</p>
+      <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Our Photos</h2>
+      <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
     </div>
 
     <!--
@@ -3467,7 +3182,7 @@
     <div class="gallery-editorial" id="gallery-grid">
 
       <!-- ROW 1: 1 wide + 1 tall portrait (2-col) -->
-      <div class="ge-row ge-row-1" data-reveal="fade-up" data-delay="100">
+      <div class="ge-row ge-row-1 page-el" style="--page-el-delay:0.28s">
         <div class="g-item ge-landscape" onclick="openLightbox(0)">
           <img src="wed_photos/wed1.jpg" alt="Prenuptial photo 1"
             style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -3479,7 +3194,7 @@
       </div>
 
       <!-- ROW 2: 3 equal squares -->
-      <div class="ge-row ge-row-3" data-reveal="fade-up" data-delay="100">
+      <div class="ge-row ge-row-3 page-el" style="--page-el-delay:0.08s">
         <div class="g-item ge-square" onclick="openLightbox(2)">
           <img src="wed_photos/wed3.jpg" alt="Prenuptial photo 3"
             style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -3495,7 +3210,7 @@
       </div>
 
       <!-- ROW 3: Full-width cinematic banner -->
-      <div class="ge-row ge-row-full" data-reveal="zoom-in" data-delay="100">
+      <div class="ge-row ge-row-full page-el" style="--page-el-delay:0.08s">
         <div class="g-item ge-banner" onclick="openLightbox(5)">
           <img src="wed_photos/wed6.jpg" alt="Prenuptial photo 6"
             style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -3503,7 +3218,7 @@
       </div>
 
       <!-- ROW 4: 1 tall portrait + 2 stacked squares -->
-      <div class="ge-row ge-row-1r" data-reveal="fade-left" data-delay="100">
+      <div class="ge-row ge-row-1r page-el" style="--page-el-delay:0.08s">
         <div class="g-item ge-portrait-tall" onclick="openLightbox(6)">
           <img src="wed_photos/wed7.jpg" alt="Prenuptial photo 7"
             style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -3521,7 +3236,7 @@
       </div>
 
       <!-- ROW 5: 2 landscapes -->
-      <div class="ge-row ge-row-2" data-reveal="fade-up" data-delay="100">
+      <div class="ge-row ge-row-2 page-el" style="--page-el-delay:0.08s">
         <div class="g-item ge-landscape-sm" onclick="openLightbox(9)">
           <img src="wed_photos/wed10.jpg" alt="Prenuptial photo 10"
             style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -3533,7 +3248,7 @@
       </div>
 
       <!-- ROW 6: 3 portraits -->
-      <div class="ge-row ge-row-3" data-reveal="fade-right" data-delay="100">
+      <div class="ge-row ge-row-3 page-el" style="--page-el-delay:0.08s">
         <div class="g-item ge-portrait-sm" onclick="openLightbox(11)">
           <img src="wed_photos/wed12.jpg" alt="Prenuptial photo 12"
             style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -3549,7 +3264,7 @@
       </div>
 
       <!-- ROW 7: Full-width final -->
-      <div class="ge-row ge-row-full" data-reveal="zoom-in" data-delay="100">
+      <div class="ge-row ge-row-full page-el" style="--page-el-delay:0.08s">
         <div class="g-item ge-banner" onclick="openLightbox(14)">
           <img src="wed_photos/wed15.jpg" alt="Prenuptial photo 15"
             style="width:100%;height:100%;object-fit:cover;display:block;" />
@@ -3580,13 +3295,13 @@
         <div class="back-btn-bar"><button class="back-btn back-btn-light" onclick="showPage('home')">Go Back</button>
         </div>
 
-        <p class="sec-eyebrow" data-reveal="fade-up">Good to Know</p>
-        <h2 class="sec-title" data-reveal="fade-up" data-delay="100">FAQs</h2>
-        <div class="sec-rule" data-reveal="fade-up" data-delay="200"></div>
+        <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">Good to Know</p>
+        <h2 class="sec-title page-el" style="--page-el-delay:0.12s">FAQs</h2>
+        <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
 
         <ul class="faq-list">
 
-          <li class="faq-item" data-reveal="fade-up" data-delay="100">
+          <li class="faq-item page-el" style="--page-el-delay:0.28s">
             <p class="faq-q">How do I get to the ceremony venue?</p>
             <p class="faq-a">
               The ceremony is at San Vicente Ferrer Quasi Parish, Pasian, Monkayo, Davao de Oro.
@@ -3600,7 +3315,7 @@
             </p>
           </li>
 
-          <li class="faq-item" data-reveal="fade-up" data-delay="150">
+          <li class="faq-item page-el" style="--page-el-delay:0.36s">
             <p class="faq-q">Are plus ones allowed?</p>
             <p class="faq-a">
               Our celebration is intimate, so we kindly ask that only those formally
@@ -3609,7 +3324,7 @@
             </p>
           </li>
 
-          <li class="faq-item" data-reveal="fade-up" data-delay="200">
+          <li class="faq-item page-el" style="--page-el-delay:0.44s">
             <p class="faq-q">What is the dress code?</p>
             <p class="faq-a">
               We're going for a warm Brown Palette — earthy tones, tans, caramels,
@@ -3619,7 +3334,7 @@
             </p>
           </li>
 
-          <li class="faq-item" data-reveal="fade-up" data-delay="250">
+          <li class="faq-item page-el" style="--page-el-delay:0.52s">
             <p class="faq-q">What time does the reception end?</p>
             <p class="faq-a">
               The reception and program are expected to wrap up by
@@ -3692,7 +3407,14 @@
       PAGES.forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
+        const wasActive = el.classList.contains('active');
         el.classList.toggle('active', id === name);
+        // Reset page-el animations on the page we're leaving
+        if (wasActive && id !== name) {
+          el.querySelectorAll('.page-el').forEach(function(pe) {
+            pe.classList.remove('page-el-in');
+          });
+        }
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (name === 'home') {
@@ -3700,13 +3422,17 @@
         setupHomeScrollAnimations();
       }
       if (name === 'dresscode') {
+        // Double rAF ensures the page is visible and has layout before we measure
         requestAnimationFrame(() => {
-          initCarousel('scroll-women');
-          initCarousel('scroll-men');
-          startDresscodeAutoAdvance();
+          requestAnimationFrame(() => {
+            peekInit('scroll-women');
+            peekInit('scroll-men');
+            // Re-render in case wrap width was 0 on first init
+            peekRender('scroll-women');
+            peekRender('scroll-men');
+          });
         });
       } else {
-        stopDresscodeAutoAdvance();
         if (homeObserver) homeObserver.disconnect();
       }
       if (name === 'faq') {
@@ -3791,137 +3517,103 @@
       }, 1800);
     }
 
-    // ── DRESS CODE CAROUSELS ─────────────────────────────────────
-    let dresscodeAutoAdvanceInterval = null;
+    // ── COVERFLOW CAROUSEL ──────────────────────────────────────
+    const peekState = {};
+    const CARD_W = 160;   // px — must match .dc-item width
+    const CARD_GAP = 12.8; // px — matches 0.8rem gap
 
-    function initCarousel(id) {
-      const el = document.getElementById(id);
-      if (!el || el.dataset.carouselInit === 'true') return;
-      el.dataset.carouselInit = 'true';
-
-      const leftBtn = el.closest('.dc-carousel-wrap').querySelector('.dc-arrow-left');
-      const rightBtn = el.closest('.dc-carousel-wrap').querySelector('.dc-arrow-right');
-      const items = Array.from(el.querySelectorAll('.dc-item'));
-      const pageSize = 4;
-      const pageCount = Math.max(1, Math.ceil(items.length / pageSize));
-      const style = getComputedStyle(el);
-      const gap = parseFloat(style.gap) || parseFloat(style.columnGap) || 0;
-      const item = items[0];
-      const itemWidth = item ? item.offsetWidth : el.clientWidth;
-      const pageWidth = itemWidth * pageSize + gap * (pageSize - 1);
-
-      el.dataset.carouselPage = '0';
-      el.dataset.carouselPageCount = pageCount.toString();
-      el.dataset.carouselPageWidth = pageWidth.toString();
-
-      function updateArrows() {
-        const pageIndex = Math.min(pageCount - 1, Math.max(0, Math.round(el.scrollLeft / pageWidth)));
-        el.dataset.carouselPage = pageIndex.toString();
-        const isFirst = pageIndex === 0;
-        const isLast = pageIndex === pageCount - 1;
-        if (leftBtn) {
-          leftBtn.style.display = isFirst ? 'none' : 'flex';
-          leftBtn.style.pointerEvents = isFirst ? 'none' : 'auto';
-        }
-        if (rightBtn) {
-          rightBtn.style.display = isLast ? 'none' : 'flex';
-          rightBtn.style.pointerEvents = isLast ? 'none' : 'auto';
-        }
-      }
-
-      // Initial state
-      updateArrows();
-      el.addEventListener('scroll', updateArrows, { passive: true });
-
-      // Pause auto-advance while user interacts
-      const carouselWrap = el.closest('.dc-carousel-wrap');
-      if (carouselWrap) {
-        carouselWrap.addEventListener('mouseenter', stopDresscodeAutoAdvance);
-        carouselWrap.addEventListener('mouseleave', startDresscodeAutoAdvance);
-      }
-
-      // Drag-to-scroll
-      let isDown = false, startX, scrollLeft;
-      el.addEventListener('mousedown', e => {
-        isDown = true;
-        startX = e.pageX - el.offsetLeft;
-        scrollLeft = el.scrollLeft;
-      });
-      el.addEventListener('mouseleave', () => { isDown = false; });
-      el.addEventListener('mouseup', () => { isDown = false; });
-      el.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - el.offsetLeft;
-        el.scrollLeft = scrollLeft - (x - startX) * 1.5;
-      });
-    }
-
-    function autoAdvanceCarousel(el) {
-      if (!el) return;
-      const pageCount = Number(el.dataset.carouselPageCount) || 1;
-      const pageWidth = Number(el.dataset.carouselPageWidth) || el.clientWidth;
-      const pageIndex = Number(el.dataset.carouselPage) || 0;
-      const nextPage = pageIndex >= pageCount - 1 ? 0 : pageIndex + 1;
-      el.dataset.carouselPage = nextPage.toString();
-      el.scrollTo({ left: nextPage * pageWidth, behavior: 'smooth' });
-    }
-
-    function startDresscodeAutoAdvance() {
-      stopDresscodeAutoAdvance();
-      dresscodeAutoAdvanceInterval = setInterval(() => {
-        autoAdvanceCarousel(document.getElementById('scroll-women'));
-        autoAdvanceCarousel(document.getElementById('scroll-men'));
-      }, 5200);
-    }
-
-    function stopDresscodeAutoAdvance() {
-      if (dresscodeAutoAdvanceInterval) {
-        clearInterval(dresscodeAutoAdvanceInterval);
-        dresscodeAutoAdvanceInterval = null;
-      }
-    }
-
-    // Init after DOM ready
-    document.addEventListener('DOMContentLoaded', () => {
-      initCarousel('scroll-women');
-      initCarousel('scroll-men');
-    });
-
-    function scrollCarousel(id, dir) {
+    function peekInit(id) {
       const el = document.getElementById(id);
       if (!el) return;
-      const pageCount = Number(el.dataset.carouselPageCount) || 1;
-      const items = Array.from(el.querySelectorAll('.dc-item'));
-      const pageSize = 4;
+      // Already initialised — just re-render with correct wrap width
+      if (peekState[id]) { peekRender(id); return; }
 
-      // Recalculate page width dynamically for accuracy
-      const style = getComputedStyle(el);
-      const gap = parseFloat(style.gap) || parseFloat(style.columnGap) || 0;
-      const item = items[0];
-      const itemWidth = item ? item.offsetWidth : el.clientWidth;
-      const pageWidth = itemWidth * pageSize + gap * (pageSize - 1);
+      const wrap   = el.closest('.dc-carousel-wrap');
+      const items  = Array.from(el.querySelectorAll('.dc-item'));
+      const dotsEl = wrap ? wrap.querySelector('.dc-dots') : null;
+      const prevWrap = document.getElementById(id.replace('scroll-', 'btn-') + '-prev-wrap');
+      const nextWrap = document.getElementById(id.replace('scroll-', 'btn-') + '-next-wrap');
 
-      const currentPage = Number(el.dataset.carouselPage) || 0;
-      const nextPage = Math.max(0, Math.min(currentPage + dir, pageCount - 1));
-      if (nextPage === currentPage) return;
-      el.dataset.carouselPage = nextPage.toString();
-      el.scrollTo({ left: nextPage * pageWidth, behavior: 'smooth' });
+      peekState[id] = { index: 0, items, dotsEl, prevWrap, nextWrap };
 
-      const carouselWrap = el.closest('.dc-carousel-wrap');
-      if (carouselWrap) {
-        const leftBtn = carouselWrap.querySelector('.dc-arrow-left');
-        const rightBtn = carouselWrap.querySelector('.dc-arrow-right');
-        if (leftBtn) {
-          leftBtn.style.display = nextPage === 0 ? 'none' : 'flex';
-          leftBtn.style.pointerEvents = nextPage === 0 ? 'none' : 'auto';
-        }
-        if (rightBtn) {
-          rightBtn.style.display = nextPage === pageCount - 1 ? 'none' : 'flex';
-          rightBtn.style.pointerEvents = nextPage === pageCount - 1 ? 'none' : 'auto';
-        }
+      // Build dots
+      if (dotsEl) {
+        dotsEl.innerHTML = '';
+        items.forEach((_, i) => {
+          const d = document.createElement('span');
+          d.className = 'dc-dot' + (i === 0 ? ' dc-dot-active' : '');
+          dotsEl.appendChild(d);
+        });
+      }
+
+      peekRender(id);
+
+      // Touch swipe
+      let tx = 0;
+      el.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; }, { passive: true });
+      el.addEventListener('touchend', e => {
+        const diff = tx - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 40) peekGo(id, diff > 0 ? 1 : -1);
+      }, { passive: true });
+    }
+
+    function peekRender(id) {
+      const s = peekState[id];
+      if (!s) return;
+      const { index, items, dotsEl, prevWrap, nextWrap } = s;
+      const el = document.getElementById(id);
+      const wrapEl = el ? el.closest('.dc-carousel-wrap') : null;
+
+      // ── Centre the active card in the wrap ──
+      const wrapW = wrapEl ? wrapEl.offsetWidth : 300;
+      // left edge of the active card so it centres:  wrapW/2 - CARD_W/2
+      const centreOffset = wrapW / 2 - CARD_W / 2;
+      // each card occupies CARD_W + CARD_GAP px
+      const step = CARD_W + CARD_GAP;
+      const translateX = centreOffset - index * step;
+      el.style.transform = 'translateX(' + translateX + 'px)';
+
+      // ── Card states ──
+      items.forEach((item, i) => {
+        const dist = i - index;
+        item.classList.toggle('dc-active', dist === 0);
+        // hide cards further than 1 step away
+        item.classList.toggle('dc-hidden', Math.abs(dist) > 1);
+      });
+
+      // ── Dots ──
+      if (dotsEl) {
+        Array.from(dotsEl.children).forEach((d, i) => {
+          d.classList.toggle('dc-dot-active', i === index);
+        });
+      }
+
+      // ── Arrow visibility: ghost placeholder keeps layout stable ──
+      const isFirst = index === 0;
+      const isLast  = index === items.length - 1;
+      if (prevWrap) {
+        prevWrap.innerHTML = isFirst
+          ? '<span class="dc-arrow-ghost"></span>'
+          : '<button class="dc-arrow" onclick="peekGo(\'' + id + '\',-1)" aria-label="Previous">&#8592;</button>';
+      }
+      if (nextWrap) {
+        nextWrap.innerHTML = isLast
+          ? '<span class="dc-arrow-ghost"></span>'
+          : '<button class="dc-arrow" onclick="peekGo(\'' + id + '\',1)" aria-label="Next">&#8594;</button>';
       }
     }
+
+    function peekGo(id, dir) {
+      const s = peekState[id];
+      if (!s) return;
+      const next = Math.max(0, Math.min(s.index + dir, s.items.length - 1));
+      if (next === s.index) return;
+      s.index = next;
+      peekRender(id);
+    }
+
+    // Carousels are initialised when the dresscode page is shown (see showPage),
+    // not here — the page is hidden at load so offsetWidth would be 0.
 
     // ── LIGHTBOX ─────────────────────────────────────────────────
     let lbIndex = 0;
@@ -4003,77 +3695,30 @@
       if (Math.abs(diff) > 40) shiftLightbox(diff > 0 ? 1 : -1);
     }, { passive: true });
 
-    // ══════════════════════════════════════════════════════════════
-    //  SCROLL-TRIGGERED ANIMATION SYSTEM
-    //  Uses IntersectionObserver. Replays every time element enters
-    //  viewport — scrolling up OR down.
-    // ══════════════════════════════════════════════════════════════
-    (function initReveal() {
-
-      // Graceful fallback for old browsers
-      if (!('IntersectionObserver' in window)) {
-        document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
-        return;
-      }
-
-      const FLOAT_IDLE = { a: 'float-idle-a', b: 'float-idle-b', c: 'float-idle-c' };
-      const idleTimers = new WeakMap();
-
-      function reveal(el) {
-        el.classList.add('is-visible');
-        if (el.dataset.reveal === 'float-flower') {
-          const cls = FLOAT_IDLE[el.dataset.floatIdle] || 'float-idle-a';
-          if (idleTimers.has(el)) clearTimeout(idleTimers.get(el));
-          const t = setTimeout(() => {
-            if (el.classList.contains('is-visible')) el.classList.add(cls);
-          }, (parseFloat(el.dataset.delay) || 0) + 1400);
-          idleTimers.set(el, t);
-        }
-      }
-
-      function hide(el) {
-        el.classList.remove('is-visible');
-        if (el.dataset.reveal === 'float-flower') {
-          const cls = FLOAT_IDLE[el.dataset.floatIdle] || 'float-idle-a';
-          el.classList.remove(cls);
-          if (idleTimers.has(el)) { clearTimeout(idleTimers.get(el)); idleTimers.delete(el); }
-        }
-      }
-
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => e.isIntersecting ? reveal(e.target) : hide(e.target));
-      }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
-
-      // Observe all [data-reveal] elements — called each time a page is shown
-      function observePage(pageEl) {
-        pageEl.querySelectorAll('[data-reveal]').forEach(el => {
-          // Unobserve + re-observe so IO re-evaluates intersection fresh
-          io.unobserve(el);
-          // Reset to hidden state so animation can replay
-          el.classList.remove('is-visible');
-          // Remove any idle float classes
-          Object.values(FLOAT_IDLE).forEach(c => el.classList.remove(c));
-          io.observe(el);
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       INNER-PAGE SCROLL ANIMATION — "rising from below"
+       Each .page-el gains .page-el-in when it enters the viewport
+       (playing the pageElRise keyframe) and loses it when it leaves,
+       so the animation replays every time the element scrolls in.
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    (function() {
+      var pageElObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('page-el-in');
+          } else {
+            // Remove so animation fires again on next scroll-in
+            entry.target.classList.remove('page-el-in');
+          }
         });
-      }
-
-      // Initial observe on page load (for landing page elements if any)
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -24px 0px'
       });
 
-      // ── Patch showPage to reset + re-observe on every page switch ──
-      // showPage is a hoisted function declaration so it exists on window
-      const _orig = showPage;
-      window.showPage = function(name) {
-        _orig(name);
-        // Double RAF: first frame makes page display:block, second frame IO fires
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          const pg = document.getElementById(name);
-          if (pg) observePage(pg);
-        }));
-      };
-
+      document.querySelectorAll('.page-el').forEach(function(el) {
+        pageElObserver.observe(el);
+      });
     })();
   </script>
 

@@ -443,11 +443,17 @@
       /* Between flap (z:1) and envelope body (z:3) — rises above flap when open */
       z-index: 2;
 
-      opacity: 1;
+      /* Hidden until envelope starts opening */
+      opacity: 0;
 
       border-radius: 2px;
 
       pointer-events: none;
+    }
+
+    /* Reveal letter only when opening begins */
+    .env-scene.opening .env-letter {
+      opacity: 1;
     }
 
     /* LETTER RISE: starts behind the envelope body, rises upward out of it */
@@ -462,12 +468,14 @@
       0% {
         /* Inside envelope, covered by the body layer */
         transform: translateX(-50%) translateY(0%);
+        opacity: 1;
         filter: drop-shadow(0 0px 0px rgba(59, 42, 26, 0));
       }
 
       100% {
         /* Letter risen fully — entire letter including quote clears the envelope top */
         transform: translateX(-50%) translateY(-105%);
+        opacity: 1;
         filter: drop-shadow(0 20px 100px rgba(59, 42, 26, 0.22));
       }
     }
@@ -2359,7 +2367,7 @@
       }
 
       .section-wrap {
-        padding: 0 1rem 2rem;
+        padding: 0 1.2rem 2rem;
       }
 
       .std-wrap {
@@ -2570,6 +2578,147 @@
       }
     }
 
+    /* ── ALL MOBILE (up to 600px): comprehensive responsive fixes ── */
+    @media (max-width: 600px) {
+
+      /* ── Body & layout ── */
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      /* ── Landing page centering ── */
+      #landing {
+        padding: 2rem 1rem 2rem;
+        align-items: center;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      /* ── Envelope smaller on mobile ── */
+      .env-scene {
+        width: min(300px, 82vw);
+      }
+
+      /* ── Envelope letter: reduce padding so it fits inside on small screens ── */
+      .env-letter {
+        padding: 1rem 1.2rem 0.9rem;
+        width: 72%;
+      }
+
+      .env-letter-names {
+        font-size: 1.15rem;
+      }
+
+      .env-letter-date {
+        font-size: 0.62rem;
+        letter-spacing: 0.24em;
+      }
+
+      .env-letter-quote {
+        font-size: 0.78rem;
+      }
+
+      /* ── HOME collage: proper padding and centering ── */
+      .home-collage {
+        padding: 1.5rem 1rem 0;
+        width: 100%;
+      }
+
+      /* ── Flower overlays: smaller and repositioned for mobile, never clipped ── */
+      .flower-grass {
+        width: 100px;
+        top: 100px;
+        left: -30px;
+      }
+
+      .flower-bouquet {
+        width: 140px;
+        top: 340px;
+        right: -40px;
+      }
+
+      .flower-rose {
+        width: 90px;
+        top: 520px;
+        left: -25px;
+      }
+
+      /* ── Section inner pages: more horizontal padding ── */
+      #details .section-wrap,
+      #dresscode .section-wrap,
+      #timeline .section-wrap,
+      #gallery .section-wrap,
+      #faq .section-wrap {
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+      }
+
+      /* ── Music player: compact, left-anchored ── */
+      .music-player {
+        bottom: 0.6rem;
+        right: 0.6rem;
+        max-width: calc(100vw - 1.2rem);
+      }
+
+      .music-pill {
+        max-width: calc(100vw - 1.2rem);
+      }
+
+      .music-hint,
+      .music-label {
+        max-width: 110px;
+        font-size: 0.6rem;
+      }
+
+      /* ── Footer mobile: left-align, date on new line, add bottom padding for music player ── */
+      footer {
+        text-align: left;
+        padding: 2rem 1.4rem 5rem;
+        max-width: 100% !important;
+      }
+
+      .footer-sep {
+        display: none;
+      }
+
+      .footer-names {
+        display: block;
+      }
+
+      .footer-date {
+        display: block;
+        margin-top: 0.2rem;
+      }
+
+      /* ── Dresscode carousel: ensure centering uses actual wrap width ── */
+      .dc-carousel-wrap {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .dc-scroll {
+        /* will-change already set; transition keeps smooth */
+        transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* ── Home STD row: prevent overflow ── */
+      .home-std-row {
+        margin-top: -30px;
+        padding: 0 0.5rem;
+      }
+
+      /* ── Couple row: tighten padding ── */
+      .home-couple-row {
+        padding: 0 0.3rem;
+      }
+
+      /* ── Nav strip: adjust ── */
+      .home-nav-strip {
+        padding: 0 0.1rem;
+      }
+    }
+
     /* ══════════════════════════════════════════════════════════════
        INNER PAGE — "rising from below" entrance animation
        All elements share one direction (up) so the page feels like
@@ -2722,7 +2871,6 @@
           SWAP: Replace div below with <img src="venue.jpg" alt="Venue" />
         -->
         <div class="img-ph" style="height:100%;font-size:0.65rem;letter-spacing:0.18em;">venue.jpg</div>
-        <div class="home-venue-img-label">San Vicente Ferrer Quasi Parish</div>
       </div>
 
       <!-- ③ Save the Date + Venue Details tile — overlapping photo -->
@@ -2832,7 +2980,7 @@
     </div><!-- /.home-collage -->
 
     <footer style="max-width:480px;margin:0 auto;">
-      Jezle &amp; Vengie &nbsp;·&nbsp; August 14, 2026
+      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span class="footer-date">August 14, 2026</span>
     </footer>
   </div>
 
@@ -3566,10 +3714,14 @@
 
       // ── Centre the active card in the wrap ──
       const wrapW = wrapEl ? wrapEl.offsetWidth : 300;
-      // left edge of the active card so it centres:  wrapW/2 - CARD_W/2
-      const centreOffset = wrapW / 2 - CARD_W / 2;
-      // each card occupies CARD_W + CARD_GAP px
-      const step = CARD_W + CARD_GAP;
+      // Read actual card width from the DOM (responsive-safe)
+      const activeCard = items[index] || items[0];
+      const cardW = activeCard ? activeCard.offsetWidth : CARD_W;
+      const gap = CARD_GAP;
+      // left edge of the active card so it centres:  wrapW/2 - cardW/2
+      const centreOffset = wrapW / 2 - cardW / 2;
+      // each card occupies cardW + gap px
+      const step = cardW + gap;
       const translateX = centreOffset - index * step;
       el.style.transform = 'translateX(' + translateX + 'px)';
 
@@ -3614,6 +3766,11 @@
 
     // Carousels are initialised when the dresscode page is shown (see showPage),
     // not here — the page is hidden at load so offsetWidth would be 0.
+
+    // Re-render carousels on resize so centering stays correct
+    window.addEventListener('resize', () => {
+      Object.keys(peekState).forEach(id => peekRender(id));
+    });
 
     // ── LIGHTBOX ─────────────────────────────────────────────────
     let lbIndex = 0;

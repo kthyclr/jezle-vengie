@@ -1509,6 +1509,49 @@
       text-underline-offset: 3px;
     }
 
+    /* Officiating priest card */
+    .priest-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1rem 0 0.2rem;
+      padding: 0.9rem 1rem;
+      background: var(--linen);
+      border: 1px solid var(--tan);
+      border-left: 3px solid var(--caramel);
+      border-radius: 6px;
+    }
+
+    .priest-photo {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      border: 2px solid var(--tan);
+      cursor: pointer;
+    }
+
+    .priest-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .priest-role {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--caramel);
+    }
+
+    .priest-name {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-family: var(--font-serif);
+    }
+
     .map-card {
       margin-top: 1.5rem;
       border: 1px solid var(--tan);
@@ -3104,6 +3147,19 @@
         </div>
 
         <ul class="info-list">
+          <!-- Officiating Priest -->
+          <li class="info-row" style="align-items:center;">
+            <span class="info-key">Officiated by</span>
+            <span class="info-val">
+              <div class="priest-card">
+                <img src="father.png" alt="Rev. Fr. Jemeuel P. Tadanon" class="priest-photo" onclick="openSingleLightbox(this)" />
+                <div class="priest-info">
+                  <span class="priest-role">Officiating Priest</span>
+                  <span class="priest-name">Rev. Fr. Jemeuel P. Tadanon</span>
+                </div>
+              </div>
+            </span>
+          </li>
           <!-- SWAP: Ceremony address -->
           <li class="info-row">
             <span class="info-key">Address</span>

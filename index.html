@@ -775,7 +775,7 @@
     .home-venue-img {
       position: relative;
       width: 100%;
-      height: 200px;
+      aspect-ratio: 1024 / 517;
       overflow: hidden;
       margin-top: -2px;
     }
@@ -784,8 +784,9 @@
     .home-venue-img .img-ph {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+      background: var(--parchment);
     }
 
     .home-venue-img-label {
@@ -942,7 +943,7 @@
       align-items: flex-start;
       gap: 0.9rem;
       margin-top: 1.6rem;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.2rem;
       padding: 0 0.5rem;
     }
 
@@ -960,10 +961,12 @@
     .home-polaroid img,
     .home-polaroid .img-ph {
       width: 100%;
-      height: 155px;
-      object-fit: cover;
+      aspect-ratio: 1170 / 1421;
+      height: auto;
+      object-fit: contain;
       display: block;
       border-radius: 2px;
+      background: var(--parchment);
     }
 
     .home-polaroid-cap {
@@ -1051,7 +1054,7 @@
     .home-nav-strip {
       display: flex;
       gap: 0.55rem;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       padding: 0 0.2rem;
     }
 
@@ -1421,20 +1424,60 @@
     }
 
     .venue-photos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 0.5rem;
       margin-bottom: 1.2rem;
     }
 
-    .venue-photos .img-ph {
-      height: 110px;
+    /* Ceremony: venue1 full-width banner, then venue2+venue3 side by side */
+    .venue-photos img {
+      border-radius: 2px;
+      display: block;
+      background: var(--parchment);
+      object-fit: contain;
     }
 
-    .venue-photos .img-ph.wide {
-      grid-column: span 2;
-      height: 140px;
+    .venue-photos .vp-wide {
+      width: 100%;
+      max-height: 160px;
     }
+
+    .venue-photos .vp-pair {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .venue-photos .vp-pair img {
+      width: auto;
+      max-width: 100%;
+      max-height: 120px;
+      flex-shrink: 1;
+    }
+
+    /* Shared trio strip — used by both ceremony and reception */
+    .venue-photos .vp-trio {
+      display: flex;
+      gap: 0.25rem;
+      align-items: stretch;
+      border-radius: 2px;
+    }
+
+    .venue-photos .vp-trio img {
+      flex: 1;
+      width: 0;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 2px;
+      padding: 3px;
+      background: var(--parchment);
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .home-venue-img img { cursor: pointer; }
+    .home-polaroid img  { cursor: pointer; }
 
     .info-list {
       list-style: none;
@@ -1913,40 +1956,58 @@
       flex: 1;
     }
 
-    /* Slot sizes */
-    .ge-landscape {
-      flex: 1.6;
-      height: 220px;
-    }
+    /* Slot sizes — driven by each photo's actual aspect ratio so nothing is cropped.
+       Rows that share a fixed height use object-fit:contain so the photo fits
+       fully inside its cell with a matching parchment background. */
 
+    /* ROW 1: wed1 (3:2 landscape) left, wed2 (2:3 portrait) right.
+       Portrait drives the row height; landscape gets contain so it shows fully. */
+    .ge-row-1 { align-items: stretch; }
+    .ge-landscape {
+      flex: 1.5;
+      aspect-ratio: 3 / 2;
+    }
+    .ge-landscape img { object-fit: contain; }
     .ge-portrait-tall {
       flex: 1;
-      height: 220px;
+      aspect-ratio: 2 / 3;
     }
 
+    /* ROW 2: wed3,4,5 all portrait 2:3 — equal flex so heights match */
     .ge-square {
       flex: 1;
-      height: 160px;
+      aspect-ratio: 2 / 3;
     }
 
+    /* ROW 3 & 7: wed6 & wed15 landscape 3:2 */
     .ge-banner {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 3 / 2;
     }
 
-    .ge-square-sm {
-      height: 106px;
+    /* ROW 4: wed7 (3:2) in portrait slot beside wed8+9 stacked (3:2 each).
+       Row stretches; wed7 slot gets contain so it is never cropped. */
+    .ge-row-1r { align-items: stretch; }
+    .ge-row-1r .ge-portrait-tall {
+      aspect-ratio: unset;
+      flex: 1.5;
     }
+    .ge-row-1r .ge-portrait-tall img { object-fit: contain; }
+    .ge-square-sm { aspect-ratio: 3 / 2; }
 
+    /* ROW 5: wed10,11 both 3:2 landscape */
     .ge-landscape-sm {
       flex: 1;
-      height: 155px;
+      aspect-ratio: 3 / 2;
     }
 
+    /* ROW 6: wed12 (~3:4), wed13, wed14 (2:3) — tallest ratio (2:3) for row height;
+       wed12 gets contain so nothing is cropped */
     .ge-portrait-sm {
       flex: 1;
-      height: 195px;
+      aspect-ratio: 2 / 3;
     }
+    .ge-portrait-sm img { object-fit: contain; }
 
     .g-item {
       overflow: hidden;
@@ -2192,7 +2253,7 @@
       text-transform: uppercase;
       color: var(--muted);
       border-top: 1px solid var(--tan);
-      margin-top: 1.5rem;
+      margin-top: 0.75rem;
     }
 
     .music-player {
@@ -2902,10 +2963,7 @@
 
       <!-- ② Venue photo — full bleed -->
       <div class="home-venue-img">
-        <!--
-          SWAP: Replace div below with <img src="venue.jpg" alt="Venue" />
-        -->
-        <div class="img-ph" style="height:100%;font-size:0.65rem;letter-spacing:0.18em;">venue.jpg</div>
+        <img src="venue.jpg" alt="Venue" onclick="openSingleLightbox(this)" />
       </div>
 
       <!-- ③ Save the Date + Venue Details tile — overlapping photo -->
@@ -2940,10 +2998,7 @@
       <div class="home-couple-row">
 
         <div class="home-polaroid">
-          <!--
-            SWAP: Replace div below with <img src="couple.jpg" alt="Jezle and Vengie" />
-          -->
-          <div class="img-ph" style="height:155px;font-size:0.6rem;letter-spacing:0.12em;">couple.jpg</div>
+          <img src="couple.jpg" alt="Jezle and Vengie" onclick="openSingleLightbox(this)" />
           <p class="home-polaroid-cap">Jezle <span
               style="font-size:0.55em;font-family:'Cormorant Garamond',serif;font-style:italic;vertical-align:middle;opacity:0.7;">&amp;</span>
             Vengie</p>
@@ -3040,14 +3095,12 @@
 
         <!-- Venue photos -->
         <div class="venue-photos">
-          <!--
-          SWAP: Replace these placeholders with actual venue photos.
-          Tip: Use src="ceremony-exterior.jpg" etc.
-          DESIGN NOTE: Exterior shot wide + 2 interior detail shots work best.
-        -->
-          <div class="img-ph wide">Ceremony Venue Photo</div>
-          <div class="img-ph">Interior</div>
-          <div class="img-ph">Detail</div>
+          <!-- Single row: venue1 and venue3 equal width, venue2 narrower center -->
+          <div class="vp-trio lb-group-wrap">
+            <img src="venue1.png" alt="Ceremony Exterior" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+            <img src="venue2.png" alt="Ceremony Interior" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+            <img src="venue3.png" alt="Ceremony Detail" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+          </div>
         </div>
 
         <ul class="info-list">
@@ -3091,13 +3144,12 @@
 
         <!-- Venue photos -->
         <div class="venue-photos">
-          <!--
-          SWAP: Replace with actual reception venue photos.
-          DESIGN NOTE: Garden/outdoor setting shot + table setup work great.
-        -->
-          <div class="img-ph wide">Reception Venue Photo</div>
-          <div class="img-ph">Garden Area</div>
-          <div class="img-ph">Setup</div>
+          <!-- Three 3:2 landscapes in a compact strip -->
+          <div class="vp-trio lb-group-wrap">
+            <img src="reception1.png" alt="Reception Venue" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+            <img src="reception2.png" alt="Reception Garden" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+            <img src="reception3.png" alt="Reception Setup" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+          </div>
         </div>
 
         <ul class="info-list">
@@ -3355,8 +3407,8 @@
      PAGE 6: PRENUPTIAL GALLERY
 ============================================================ -->
   <div id="gallery" class="page">
-    <div class="section-wrap" style="padding-bottom:1rem;">
-      <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
+    <div class="back-btn-bar" style="margin:0;width:100%;"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
+    <div class="section-wrap" style="padding-bottom:1rem;padding-top:0.5rem;">
       <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">A Glimpse of Forever</p>
       <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Our Photos</h2>
       <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
@@ -3529,7 +3581,7 @@
             <p class="faq-a">
               The reception and program are expected to wrap up by
               <!-- SWAP: End time — update once confirmed by the couple -->
-              <strong style="color:var(--caramel);">3:00 PM</strong>.
+              <strong style="color:var(--caramel);">2:00 PM</strong>.
               We'll update this page if the schedule changes, so check back closer to the date!
             </p>
           </li>
@@ -3855,6 +3907,33 @@
 
     function closeLightboxOnBackdrop(e) {
       if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+
+    // Opens the lightbox for a standalone image or a navigable group.
+    // Wrap sibling images in a <div class="lb-group-wrap"> to make them
+    // navigable together (e.g. ceremony trio, reception trio).
+    function openSingleLightbox(imgEl) {
+      const group = imgEl.closest('.lb-group-wrap');
+      let srcs = [];
+      let startIndex = 0;
+      if (group) {
+        const imgs = Array.from(group.querySelectorAll('img'));
+        srcs = imgs.map(i => ({ src: i.src, alt: i.alt }));
+        startIndex = imgs.indexOf(imgEl);
+      } else {
+        srcs = [{ src: imgEl.src, alt: imgEl.alt }];
+      }
+      lbIndex = startIndex;
+      lbItems = srcs.map(({ src, alt }) => {
+        const wrapper = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = src; img.alt = alt;
+        wrapper.appendChild(img);
+        return wrapper;
+      });
+      updateLightbox(lbItems);
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
 
     function shiftLightbox(dir) {

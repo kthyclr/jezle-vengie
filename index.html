@@ -615,7 +615,7 @@
     .flower-bouquet {
       width: 590px;
       /* ← FLOWER 2 SIZE */
-      top: 550px;
+      top: 580px;
       /* ← FLOWER 2 UP/DOWN */
       right: -260px;
       /* ← FLOWER 2 LEFT/RIGHT (negative = further right) */
@@ -1476,8 +1476,13 @@
       cursor: pointer;
     }
 
-    .home-venue-img img { cursor: pointer; }
-    .home-polaroid img  { cursor: pointer; }
+    .home-venue-img img {
+      cursor: pointer;
+    }
+
+    .home-polaroid img {
+      cursor: pointer;
+    }
 
     .info-list {
       list-style: none;
@@ -2005,12 +2010,19 @@
 
     /* ROW 1: wed1 (3:2 landscape) left, wed2 (2:3 portrait) right.
        Portrait drives the row height; landscape gets contain so it shows fully. */
-    .ge-row-1 { align-items: stretch; }
+    .ge-row-1 {
+      align-items: stretch;
+    }
+
     .ge-landscape {
       flex: 1.5;
       aspect-ratio: 3 / 2;
     }
-    .ge-landscape img { object-fit: contain; }
+
+    .ge-landscape img {
+      object-fit: contain;
+    }
+
     .ge-portrait-tall {
       flex: 1;
       aspect-ratio: 2 / 3;
@@ -2030,13 +2042,22 @@
 
     /* ROW 4: wed7 (3:2) in portrait slot beside wed8+9 stacked (3:2 each).
        Row stretches; wed7 slot gets contain so it is never cropped. */
-    .ge-row-1r { align-items: stretch; }
+    .ge-row-1r {
+      align-items: stretch;
+    }
+
     .ge-row-1r .ge-portrait-tall {
       aspect-ratio: unset;
       flex: 1.5;
     }
-    .ge-row-1r .ge-portrait-tall img { object-fit: contain; }
-    .ge-square-sm { aspect-ratio: 3 / 2; }
+
+    .ge-row-1r .ge-portrait-tall img {
+      object-fit: contain;
+    }
+
+    .ge-square-sm {
+      aspect-ratio: 3 / 2;
+    }
 
     /* ROW 5: wed10,11 both 3:2 landscape */
     .ge-landscape-sm {
@@ -2050,7 +2071,10 @@
       flex: 1;
       aspect-ratio: 2 / 3;
     }
-    .ge-portrait-sm img { object-fit: contain; }
+
+    .ge-portrait-sm img {
+      object-fit: contain;
+    }
 
     .g-item {
       overflow: hidden;
@@ -3140,9 +3164,12 @@
         <div class="venue-photos">
           <!-- Single row: venue1 and venue3 equal width, venue2 narrower center -->
           <div class="vp-trio lb-group-wrap">
-            <img src="venue1.png" alt="Ceremony Exterior" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
-            <img src="venue2.png" alt="Ceremony Interior" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
-            <img src="venue3.png" alt="Ceremony Detail" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+            <img src="venue1.png" alt="Ceremony Exterior" style="aspect-ratio:2048/1364;flex:1;"
+              onclick="openSingleLightbox(this)" />
+            <img src="venue2.png" alt="Ceremony Interior" style="aspect-ratio:2048/1364;flex:1;"
+              onclick="openSingleLightbox(this)" />
+            <img src="venue3.png" alt="Ceremony Detail" style="aspect-ratio:2048/1364;flex:1;"
+              onclick="openSingleLightbox(this)" />
           </div>
         </div>
 
@@ -3150,9 +3177,10 @@
           <!-- Officiating Priest -->
           <li class="info-row" style="align-items:center;">
             <div class="priest-card" style="width:100%;">
-              <img src="father.png" alt="Rev. Fr. Jemeuel P. Tadanon" class="priest-photo" onclick="openSingleLightbox(this)" />
+              <img src="father.png" alt="Rev. Fr. Jemeuel P. Tadanon" class="priest-photo"
+                onclick="openSingleLightbox(this)" />
               <div class="priest-info">
-                <span class="priest-role">Officiated by</span>
+                <span class="priest-role">Officiating Priest</span>
                 <span class="priest-name">Rev. Fr. Jemeuel P. Tadanon</span>
               </div>
             </div>
@@ -3199,9 +3227,12 @@
         <div class="venue-photos">
           <!-- Three 3:2 landscapes in a compact strip -->
           <div class="vp-trio lb-group-wrap">
-            <img src="reception1.png" alt="Reception Venue" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
-            <img src="reception2.png" alt="Reception Garden" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
-            <img src="reception3.png" alt="Reception Setup" style="aspect-ratio:2048/1364;flex:1;" onclick="openSingleLightbox(this)" />
+            <img src="reception1.png" alt="Reception Venue" style="aspect-ratio:2048/1364;flex:1;"
+              onclick="openSingleLightbox(this)" />
+            <img src="reception2.png" alt="Reception Garden" style="aspect-ratio:2048/1364;flex:1;"
+              onclick="openSingleLightbox(this)" />
+            <img src="reception3.png" alt="Reception Setup" style="aspect-ratio:2048/1364;flex:1;"
+              onclick="openSingleLightbox(this)" />
           </div>
         </div>
 
@@ -3460,8 +3491,8 @@
      PAGE 6: PRENUPTIAL GALLERY
 ============================================================ -->
   <div id="gallery" class="page">
-    <div class="back-btn-bar" style="margin:0;width:100%;"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
-    <div class="section-wrap" style="padding-bottom:1rem;padding-top:0.5rem;">
+    <div class="section-wrap">
+      <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
       <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">A Glimpse of Forever</p>
       <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Our Photos</h2>
       <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
@@ -3568,7 +3599,8 @@
 
     </div><!-- /.gallery-editorial -->
 
-    <p style="text-align:center;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 1.8rem;padding:0 1.2rem;">
+    <p
+      style="text-align:center;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 1.8rem;padding:0 1.2rem;">
       Prenuptial Location &nbsp;·&nbsp; Camp John Hay, Baguio City
     </p>
   </div><!-- /#gallery -->
@@ -3603,10 +3635,13 @@
           <li class="faq-item page-el" style="--page-el-delay:0.28s">
             <p class="faq-q">How do I get to the ceremony venue?</p>
             <p class="faq-a">
-              The ceremony will be held at San Vicente Ferrer Quasi Parish located in Purok 1, Pasian, Monkayo, Davao de Oro.
+              The ceremony will be held at San Vicente Ferrer Quasi Parish located in Purok 1, Pasian, Monkayo, Davao de
+              Oro.
               From Monkayo town proper, the venue is approximately 15–30 minutes away by vehicle.
-              Once you arrive in Barangay Pasian, look for the uphill road located before and beside Pasian Elementary School if you are coming from Monkayo.
-              This uphill path is directly across from the uphill entrance of Pasian High School and leads straight to the church.
+              Once you arrive in Barangay Pasian, look for the uphill road located before and beside Pasian Elementary
+              School if you are coming from Monkayo.
+              This uphill path is directly across from the uphill entrance of Pasian High School and leads straight to
+              the church.
               We recommend arriving at least 20–30 minutes before the ceremony begins.
               <br><br>
               <a href="#" onclick="showPage('details'); return false;"

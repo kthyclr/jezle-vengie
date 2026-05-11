@@ -1514,6 +1514,8 @@
       text-underline-offset: 3px;
     }
 
+    .priest-br { display: inline; }
+
     /* Officiating priest card */
     .priest-card {
       display: flex;
@@ -2105,6 +2107,16 @@
     }
 
     /* ── ENTOURAGE PAGE ── */
+    #entourage .sec-eyebrow,
+    #entourage .sec-title {
+      text-align: center;
+    }
+
+    #entourage .sec-rule {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .et-section {
       margin-bottom: 2.6rem;
     }
@@ -2118,13 +2130,15 @@
       margin-bottom: 1.1rem;
       font-family: 'Montserrat', sans-serif;
       font-weight: 400;
+      text-align: center;
     }
 
-    /* ── Parents: two columns, no boxes ── */
+    /* ── Parents: single centered column ── */
     .et-parents-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 1.5rem;
+      text-align: center;
     }
 
     .et-parent-side {
@@ -2143,50 +2157,45 @@
       line-height: 1.8;
     }
 
-    /* ── Sponsors: plain list with caramel bullet ── */
+    /* ── Sponsors: centered, no bullets ── */
     .et-sponsor-subhead {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 0.88rem;
       color: var(--muted);
       margin-bottom: 0.9rem;
+      text-align: center;
     }
 
     .et-sponsor-list {
       display: flex;
       flex-direction: column;
       gap: 0.55rem;
+      align-items: center;
     }
 
     .et-sponsor-item {
-      display: flex;
-      align-items: baseline;
-      gap: 0.65rem;
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.95rem;
       color: var(--brown-deep);
       line-height: 1.4;
+      text-align: center;
     }
 
-    .et-sponsor-item::before {
-      content: '✦';
-      font-size: 0.42rem;
-      color: var(--caramel);
-      flex-shrink: 0;
-      margin-top: 0.18rem;
-    }
-
-    /* ── Secondary sponsors ── */
+    /* ── Secondary sponsors: role above name, centered ── */
     .et-secondary-row {
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 1.2rem;
+      align-items: center;
+      text-align: center;
     }
 
     .et-secondary-item {
       display: flex;
-      align-items: baseline;
-      gap: 1rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
     }
 
     .et-secondary-role {
@@ -2195,8 +2204,6 @@
       text-transform: uppercase;
       color: var(--caramel);
       white-space: nowrap;
-      flex-shrink: 0;
-      min-width: 50px;
     }
 
     .et-secondary-name {
@@ -2213,7 +2220,7 @@
     }
 
     @media (max-width: 420px) {
-      .et-parents-row { text-align: center; gap: 0.8rem; }
+      .et-parents-row { gap: 0.8rem; }
       .et-sponsor-item { font-size: 0.88rem; }
       .et-secondary-item { gap: 0.75rem; }
       .et-secondary-name { font-size: 0.88rem; }
@@ -2738,10 +2745,10 @@
         font-size: 0.58rem;
       }
 
+      .priest-br { display: block; }
+
       .info-row {
         font-size: 0.8rem;
-        flex-direction: column;
-        gap: 0.4rem;
       }
 
       .map-card {
@@ -3315,7 +3322,7 @@
         <ul class="info-list">
           <!-- Officiating Priest -->
           <li class="info-row" style="align-items:center;">
-            <span class="info-key">Officiating Priest</span>
+            <span class="info-key">Officiating<span class="priest-br"> </span>Priest</span>
             <span class="info-val" style="flex:1;">
               <div class="priest-card" style="width:100%;box-sizing:border-box;">
                 <img src="father.png" alt="Rev. Fr. Jemeuel P. Tadanon" class="priest-photo"

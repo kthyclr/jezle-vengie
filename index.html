@@ -2104,6 +2104,121 @@
       background: rgba(59, 42, 26, 0.08);
     }
 
+    /* ── ENTOURAGE PAGE ── */
+    .et-section {
+      margin-bottom: 2.6rem;
+    }
+    .et-section:last-child { margin-bottom: 0; }
+
+    .et-eyebrow {
+      font-size: 0.55rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: 1.1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+    }
+
+    /* ── Parents: two columns, no boxes ── */
+    .et-parents-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .et-parent-side {
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.55rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .et-parent-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.92rem;
+      color: var(--brown-deep);
+      line-height: 1.8;
+    }
+
+    /* ── Sponsors: plain list with caramel bullet ── */
+    .et-sponsor-subhead {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .et-sponsor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .et-sponsor-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.65rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--brown-deep);
+      line-height: 1.4;
+    }
+
+    .et-sponsor-item::before {
+      content: '✦';
+      font-size: 0.42rem;
+      color: var(--caramel);
+      flex-shrink: 0;
+      margin-top: 0.18rem;
+    }
+
+    /* ── Secondary sponsors ── */
+    .et-secondary-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .et-secondary-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .et-secondary-role {
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 50px;
+    }
+
+    .et-secondary-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--brown-deep);
+      line-height: 1.4;
+    }
+
+    .et-rule {
+      border: none;
+      border-top: 1px solid var(--tan);
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 420px) {
+      .et-parents-row { grid-template-columns: 1fr; gap: 1.2rem; }
+      .et-sponsor-item { font-size: 0.88rem; }
+      .et-secondary-item { gap: 0.75rem; }
+      .et-secondary-name { font-size: 0.88rem; }
+    }
+
     .lightbox {
       display: none;
       position: fixed;
@@ -2638,6 +2753,19 @@
       .map-card-address {
         font-size: 0.68rem;
       }
+
+      .entourage-pair,
+      .entourage-sponsors-grid {
+        gap: 1.8rem;
+      }
+
+      .entourage-secondary-grid {
+        gap: 1.5rem;
+      }
+
+      .entourage-list {
+        gap: 0.75rem;
+      }
     }
 
     /* ── MOBILE: 421px–600px (mid phones like iPhone 14, Pixel) ── */
@@ -2756,8 +2884,8 @@
       /* ── Flower 1 (rose stem): between venue photo and Save the Date card ── */
       .flower-grass {
         width: 130px;
-        top: 225px;
-        left: -83px;
+        top: 285px;
+        left: -105px;
         right: auto;
         transform: rotate(-12deg);
         transform-origin: bottom center;
@@ -2767,7 +2895,7 @@
       .flower-bouquet {
         width: 365px;
         top: 640px;
-        right: -102px;
+        right: -120px;
         left: auto;
         transform: rotate(8deg);
         transform-origin: bottom center;
@@ -3114,9 +3242,17 @@
         </a>
 
         <div class="home-nav-stack">
-          <!-- FAQs is now the small button -->
-          <a class="home-nav-sm" href="#" onclick="showPage('faq'); return false;">
-            <!-- Question mark / help icon -->
+          <!-- Entourage — dark style on top -->
+          <a class="home-nav-sm" href="#" onclick="showPage('entourage'); return false;">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+            </svg>
+            <span class="nav-eye">Meet the</span>
+            <span class="nav-title">Entourage</span>
+          </a>
+          <!-- FAQs — lighter style on bottom -->
+          <a class="home-nav-sm home-nav-sm-alt" href="#" onclick="showPage('faq'); return false;">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
@@ -3124,17 +3260,18 @@
             <span class="nav-eye">Questions?</span>
             <span class="nav-title">FAQs</span>
           </a>
-          <!-- Bible verse card replacing the duplicate Timeline -->
-          <div class="home-nav-sm home-nav-verse">
-            <span class="nav-verse-text">"Two are better than one… a cord of three strands is not quickly
-              broken."</span>
-            <span class="nav-verse-ref">Ecclesiastes 4:9–12</span>
-          </div>
         </div>
 
       </div>
 
     </div><!-- /.home-collage -->
+
+    <!-- Bible verse — closing note before footer -->
+    <div class="home-nav-verse"
+      style="max-width:480px;margin:1rem auto 0;border-radius:0;border-left:none;border-right:none;border-top:1px solid var(--tan);border-bottom:none;background:transparent;box-shadow:none;padding:1.2rem 1.5rem;text-align:center;align-items:center;">
+      <span class="nav-verse-text">"Two are better than one… a cord of three strands is not quickly broken."</span>
+      <span class="nav-verse-ref" style="margin-top:0.4rem;">Ecclesiastes 4:9–12</span>
+    </div>
 
     <footer style="max-width:480px;margin:0 auto;">
       <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span
@@ -3176,21 +3313,18 @@
         <ul class="info-list">
           <!-- Officiating Priest -->
           <li class="info-row" style="align-items:center;">
-            <div class="priest-card" style="width:100%;">
-              <img src="father.png" alt="Rev. Fr. Jemeuel P. Tadanon" class="priest-photo"
-                onclick="openSingleLightbox(this)" />
-              <div class="priest-info">
-                <span class="priest-role">Officiating Priest</span>
-                <span class="priest-name">Rev. Fr. Jemeuel P. Tadanon</span>
+            <span class="info-key">Officiating Priest</span>
+            <span class="info-val" style="flex:1;">
+              <div class="priest-card" style="width:100%;box-sizing:border-box;">
+                <img src="father.png" alt="Rev. Fr. Jemeuel P. Tadanon" class="priest-photo"
+                  onclick="openSingleLightbox(this)" />
+                <div class="priest-info">
+                  <span class="priest-name">Rev. Fr. Jemeuel P. Tadanon</span>
+                </div>
               </div>
-            </div>
+            </span>
           </li>
-          <!-- SWAP: Ceremony address -->
-          <li class="info-row">
-            <span class="info-key">Address</span>
-            <span class="info-val">Pasian, Monkayo, Davao de Oro</span>
-          </li>
-          <!-- SWAP: Ceremony Google Maps link is in the map card below -->
+          <!-- Address shown in map card below -->
         </ul>
 
         <!-- Map card — themed to match the invitation; tapping opens Google Maps.
@@ -3236,15 +3370,6 @@
           </div>
         </div>
 
-        <ul class="info-list">
-          <!-- SWAP: Reception address -->
-          <li class="info-row">
-            <span class="info-key">Address</span>
-            <span class="info-val">Monkayo, Davao de Oro</span>
-          </li>
-          <!-- SWAP: Reception Google Maps link is in the map card below -->
-        </ul>
-
         <!-- Map card — themed to match the invitation; tapping opens Google Maps.
            SWAP: Update href with the correct Google Maps link for the reception venue. -->
         <a class="map-card page-el" style="--page-el-delay:0.26s"
@@ -3267,6 +3392,10 @@
       </div>
 
     </div>
+
+    <footer style="max-width:700px;margin:0 auto;">
+      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span class="footer-date">August 14, 2026</span>
+    </footer>
   </div>
 
 
@@ -3420,6 +3549,10 @@
       </div>
 
     </div>
+
+    <footer style="max-width:700px;margin:0 auto;">
+      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span class="footer-date">August 14, 2026</span>
+    </footer>
   </div>
 
 
@@ -3484,6 +3617,10 @@
 
       </ul>
     </div>
+
+    <footer style="max-width:700px;margin:0 auto;">
+      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span class="footer-date">August 14, 2026</span>
+    </footer>
   </div>
 
 
@@ -3491,7 +3628,7 @@
      PAGE 6: PRENUPTIAL GALLERY
 ============================================================ -->
   <div id="gallery" class="page">
-    <div class="section-wrap">
+    <div class="section-wrap" style="padding-bottom:1rem;">
       <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
       <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">A Glimpse of Forever</p>
       <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Our Photos</h2>
@@ -3599,11 +3736,103 @@
 
     </div><!-- /.gallery-editorial -->
 
-    <p
-      style="text-align:center;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 1.8rem;padding:0 1.2rem;">
-      Prenuptial Location &nbsp;·&nbsp; Camp John Hay, Baguio City
-    </p>
+    <!-- Prenuptial location badge -->
+    <div style="max-width:700px;margin:2rem auto 0;padding:0 1.2rem 2rem;">
+      <div style="display:flex;align-items:center;gap:1rem;background:var(--brown-deep);color:#fff;padding:1.1rem 1.4rem;border-radius:4px;position:relative;overflow:hidden;">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,145,90,0.12) 0%,transparent 65%);pointer-events:none;"></div>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;flex-shrink:0;fill:var(--caramel);opacity:0.9;">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <div style="position:relative;z-index:1;">
+          <p style="font-size:0.55rem;letter-spacing:0.32em;text-transform:uppercase;color:rgba(201,145,90,0.7);margin:0 0 0.2rem;font-family:'Montserrat',sans-serif;">Prenuptial Location</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:#fff;margin:0;line-height:1.3;">Camp John Hay</p>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin:0.15rem 0 0;letter-spacing:0.06em;">Baguio City, Benguet</p>
+        </div>
+        <div style="margin-left:auto;font-family:'Great Vibes',cursive;font-size:2rem;color:rgba(201,145,90,0.18);line-height:1;user-select:none;flex-shrink:0;">JV</div>
+      </div>
+    </div>
+
+    <footer style="max-width:700px;margin:0 auto;">
+      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span class="footer-date">August 14, 2026</span>
+    </footer>
   </div><!-- /#gallery -->
+
+
+  <!-- ============================================================
+     PAGE 8: ENTOURAGE
+  ============================================================ -->
+  <div id="entourage" class="page">
+    <div class="section-wrap">
+      <div class="back-btn-bar"><button class="back-btn" onclick="showPage('home')">Go Back</button></div>
+
+      <p class="sec-eyebrow page-el" style="--page-el-delay:0.04s">Those Who Stand With Us</p>
+      <h2 class="sec-title page-el" style="--page-el-delay:0.12s">Entourage</h2>
+      <div class="sec-rule page-el" style="--page-el-delay:0.20s"></div>
+
+      <!-- PARENTS -->
+      <div class="et-section page-el" style="--page-el-delay:0.28s">
+        <p class="et-eyebrow">Parents</p>
+        <div class="et-parents-row">
+          <div>
+            <p class="et-parent-side">Groom's Parents</p>
+            <div class="et-parent-name">
+              Mr. Vicente Doydoy<br>Mrs. Loreta Doydoy
+            </div>
+          </div>
+          <div>
+            <p class="et-parent-side">Bride's Parents</p>
+            <div class="et-parent-name">
+              Mr. Lando Laureto<br>Mrs. Jeana Laureto
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="et-rule page-el" style="--page-el-delay:0.32s">
+
+      <!-- PRINCIPAL SPONSORS -->
+      <div class="et-section page-el" style="--page-el-delay:0.36s">
+        <p class="et-eyebrow">Principal Sponsors</p>
+        <p class="et-sponsor-subhead">Ninong &amp; Ninang</p>
+        <div class="et-sponsor-list">
+          <div class="et-sponsor-item">Mr. Ronald &amp; Mrs. Jenny Derano</div>
+          <div class="et-sponsor-item">Mr. Dennis &amp; Mrs. Marife Ramo</div>
+          <div class="et-sponsor-item">Mr. Romeo &amp; Mrs. Judith Uy</div>
+          <div class="et-sponsor-item">Mr. Edgar &amp; Mrs. Arcelie Mabilen</div>
+          <div class="et-sponsor-item">Mr. Rellien</div>
+          <div class="et-sponsor-item">Mr. Gary Lagatiera</div>
+          <div class="et-sponsor-item">Mrs. Josephine Paulin</div>
+          <div class="et-sponsor-item">Mrs. Maria Conception Crizaldo</div>
+        </div>
+      </div>
+
+      <hr class="et-rule page-el" style="--page-el-delay:0.44s">
+
+      <!-- SECONDARY SPONSORS -->
+      <div class="et-section page-el" style="--page-el-delay:0.48s">
+        <p class="et-eyebrow">Secondary Sponsors</p>
+        <div class="et-secondary-row">
+          <div class="et-secondary-item">
+            <span class="et-secondary-role">Veil</span>
+            <span class="et-secondary-name">Mr. Christian Jim &amp; Mrs. Helen Edusma</span>
+          </div>
+          <div class="et-secondary-item">
+            <span class="et-secondary-role">Cord</span>
+            <span class="et-secondary-name">Mr. Mark Anthony &amp; Mrs. Isabel Alfaro</span>
+          </div>
+          <div class="et-secondary-item">
+            <span class="et-secondary-role">Candle</span>
+            <span class="et-secondary-name">Mr. Isagani &amp; Mrs. Nora Cañares</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer style="max-width:700px;margin:0 auto;">
+      <span class="footer-names">Jezle &amp; Vengie</span><span class="footer-sep"> &nbsp;·&nbsp; </span><span class="footer-date">August 14, 2026</span>
+    </footer>
+  </div>
 
 
   <!-- ── LIGHTBOX ── -->
@@ -3682,6 +3911,10 @@
         </ul>
       </div>
     </div><!-- /.faq-collage -->
+
+    <footer style="max-width:700px;margin:0 auto;border-top-color:rgba(201,145,90,0.25);color:rgba(255,255,255,0.35);">
+      <span class="footer-names" style="color:rgba(255,255,255,0.45);">Jezle &amp; Vengie</span><span class="footer-sep" style="color:rgba(255,255,255,0.2);"> &nbsp;·&nbsp; </span><span class="footer-date" style="color:rgba(255,255,255,0.35);">August 14, 2026</span>
+    </footer>
   </div>
 
 
@@ -3689,7 +3922,7 @@
      JAVASCRIPT
 ============================================================ -->
   <script>
-    const PAGES = ['home', 'details', 'dresscode', 'timeline', 'gallery', 'faq'];
+    const PAGES = ['home', 'details', 'dresscode', 'timeline', 'gallery', 'faq', 'entourage'];
 
     function triggerHomeEntrance() {
       // Reset sections
